@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<article class="post-index">
+	<header class="clearfix hidden">
+		<h1>Post-Index</h1>
+	</header>
+	{% for post in site.posts %}
+		<section class="clearfix single-post">
+			<header class="post-header clearfix">
+				<h1 class="post-title"><a href="{{ post.url }}">{{ post.title | markdownify }}</a></h1>
+				<time class="post-date" datetime="{{ post.date | date_to_xmlschema }}" pubdate>{{ post.date | date: "%A, %B %d, %Y" }}</time>
+			</header>
+			<p class="post-teaser">{{ post.teaser | markdownify }}</p>
+			<div id="post">
+			{{ post.content }}
+			</div>
+			<aside class="info clearfix">
+				<p class="signature">
+					<span class="post-author">
+						<a href="{{ site.baseurl }}about.html">Ben Doerr</a></p>
+			</aside>
+		</section>
+		<hr />
+	{% endfor %}
+</article>

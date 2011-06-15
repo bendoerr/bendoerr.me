@@ -1,0 +1,134 @@
+/* via http://people.mozilla.com/~jbalogh/ribbon/ribbon.css */
+@font-face {
+font-family: Collegiate;
+src: url("../../fonts/Collegiate.ttf"); }
+
+.ribbon-holder {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  height: 10em;
+}
+
+.right.ribbon-holder {
+  right: 0;
+}
+
+.left.ribbon-holder {
+  left: 0;
+}
+
+.ribbon,
+.ribbon:hover {
+  text-decoration: none;
+}
+
+.ribbon {
+  font-family: 'Collegiate', sans-serif !important;
+  letter-spacing: -.1px;
+  opacity: 0.95;
+
+  padding: 0.25em 0;
+  position: relative;
+  top: 2.5em;
+
+  /* Defaults friendly for white pages. */
+     -moz-box-shadow: 0px 0px 13px #888; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 13px #888; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 13px #888; /* Opera 10.5, IE9, Chrome 10+ */
+  color: #FFF;
+  display: block;
+  line-height: 1.35em;
+}
+
+.ribbon .text {
+  padding: 0.1em 3em;
+}
+
+.right .ribbon {
+     -moz-transform: rotate(45deg);  /* FF3.5+ */
+       -o-transform: rotate(45deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(45deg);  /* Saf3.1+, Chrome */
+      -ms-transform: rotate(45deg);  /* IE9 */
+          transform: rotate(45deg);  
+               zoom: 1;
+  right: -2.8em;
+}
+
+.left .ribbon {
+     -moz-transform: rotate(-45deg);  /* FF3.5+ */
+       -o-transform: rotate(-45deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-45deg);  /* Saf3.1+, Chrome */
+      -ms-transform: rotate(-45deg);  /* IE9 */
+          transform: rotate(-45deg);  
+               zoom: 1;
+  left: -2.8em;
+}
+
+.white.ribbon {
+  color: #111;
+  background-color: #F5F5F5;
+  background: -webkit-gradient(linear, left bottom, left top, from(#f3f3f3), to(#fff));
+  -moz-box-shadow: 0 0 13px #999;
+  -webkit-box-shadow: 0 0 13px #999;
+  text-shadow: 0 0 .05em;
+}
+
+.white.ribbon .text {
+  border: 1px solid #cecece;
+}
+
+.red.ribbon {
+  background-color: #9a0000;
+  background: -webkit-gradient(linear, left bottom, left top, from(#9a0000), to(#a90000));
+}
+
+.red.ribbon .text {
+  border: 1px solid #bf6060;
+}
+
+.green.ribbon {
+  background-color: #006e00;
+  background: -webkit-gradient(linear, left bottom, left top, from(#006e00), to(#007200));
+}
+
+.green.ribbon .text {
+  border: 1px solid #6bac6b;
+}
+
+.darkblue.ribbon {
+  background-color: #121621;
+  color: #ecedee;
+}
+
+.darkblue.ribbon .text {
+  border: 1px solid #53565e;
+}
+
+.orange.ribbon {
+  background-color: #E57504;
+  background: -webkit-gradient(linear, left bottom, left top, from(#dc7202), to(#ee7906));
+}
+
+.orange.ribbon .text {
+  border: 1px solid #ebaa65;
+}
+
+.gray.ribbon {
+  background-color: #6d6d6d;
+  background: -webkit-gradient(linear, left bottom, left top, from(#6a6a6a) to(#6d6d6d));
+}
+
+.gray.ribbon .text {
+  border: 1px solid #a4a4a4;
+}
+
+.darkgray.ribbon {
+  background-color: #282828;
+  background: -webkit-gradient(linear, left bottom, left top, from(#383838) to(#282828));
+}
+
+.darkgray.ribbon .text {
+  border: 1px solid #a4a4a4;
+  color: white !important;
+}
