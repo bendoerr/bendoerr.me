@@ -1,7 +1,7 @@
 safe:        true
 auto:        true
 server:      true
-
+baseurl:    /
 
 future:      true
 lsi:         false
