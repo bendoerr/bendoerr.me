@@ -554,8 +554,28 @@ color: rgb(145,145,145); }
 font-size: .8em;
 }
 
-.highlight  { background: #ffffff; }
-.highlight .lineno { background: #EAEAEA; color: #666;}
+.highlight  { 
+background-color: ghostWhite;
+border-color: #EAEAEA;
+border-style: solid; 
+border-width: 1px;
+box-sizing: border-box;
+/* margin-right: 4em; */
+}
+
+.highlight pre {
+margin-bottom: 0px;
+font-size: .8em;
+line-height: 16px;
+}
+
+.highlight .lineno { 
+background: #EAEAEA; 
+color: #666;
+margin: 0;
+padding: 0.25em;
+}
+
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
