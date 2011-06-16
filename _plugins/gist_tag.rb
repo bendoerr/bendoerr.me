@@ -78,7 +78,8 @@ module Jekyll
       @cache_disabled = true
     end
   end
-end
 
 Liquid::Template.register_tag('gist', Jekyll::GistTag)
 Liquid::Template.register_tag('gistnocache', Jekyll::GistTagNoCache)
+end
+
