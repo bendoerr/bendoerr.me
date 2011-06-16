@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Grails Webflow Unit Test Case
+teaser: Test post of some previous work
+published: false
 ---
 I recently got fed up (only took a year) with the lack of ability to unit test the individual parts of a web flow so I wrote a test harness to allow me to do just that. The motivation behind this test case is to be able to test logic within web flow actions without the need to work your way all the way though the web flow. 
 
