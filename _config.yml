@@ -3,6 +3,7 @@ auto:        true
 server:      true
 baseurl:     /
 
+plugins:     ./_plugins
 future:      true
 lsi:         false
 pygments:    true
