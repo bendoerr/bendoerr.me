@@ -550,6 +550,10 @@ font-family: 'Wire One', serif; }
 /*float: right;*/
 color: rgb(145,145,145); }
 
+.gist {
+font-size: .8em;
+}
+
 /*Currently as close as I can get to solarized dark.*/
 .highlight  { 
 background: #002b36; 
