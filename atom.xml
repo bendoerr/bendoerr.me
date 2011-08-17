@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>bendoerr.me</title>
+  <link href="http://bendoerr.me/atom.xml" rel="self"/>
+  <link href="http://bendoerr.me/"/>
+  <updated>2011-08-17T00:08:19-04:00</updated>
+  <id>http://bendoerr.me/</id>
+  <author>
+    <name>Benjamin R Doerr</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Zombie Ninjas Attack: A Survivor's Retrospective</title>
+    <link href="http://bendoerr.me/blog/2011/08/17/zombie-ninjas-attack-a-survivors-retrospective/"/>
+    <updated>2011-08-17T00:06:00-04:00</updated>
+    <id>http://bendoerr.me/blog/2011/08/17/zombie-ninjas-attack-a-survivors-retrospective</id>
+    <content type="html">
+</content>
+  </entry>
+  
+  <entry>
+    <title>Testing</title>
+    <link href="http://bendoerr.me/blog/2011/08/17/testing/"/>
+    <updated>2011-08-17T00:04:00-04:00</updated>
+    <id>http://bendoerr.me/blog/2011/08/17/testing</id>
+    <content type="html">
+</content>
+  </entry>
+  
+</feed>
