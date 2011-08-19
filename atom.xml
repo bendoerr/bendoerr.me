@@ -4,7 +4,7 @@
   <title>bendoerr.me</title>
   <link href="bendoerr.me/atom.xml" rel="self"/>
   <link href="bendoerr.me/"/>
-  <updated>2011-08-19T14:24:24-04:00</updated>
+  <updated>2011-08-19T14:50:50-04:00</updated>
   <id>bendoerr.me/</id>
   <author>
     <name>Benjamin R Doerr</name>
@@ -18,6 +18,39 @@
     <updated>2011-06-20T14:41:00-04:00</updated>
     <id>bendoerr.me/blog/2011/06/20/groovy-inject</id>
     <content type="html">&lt;p&gt;This is a test.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Groovy's Fold</title>
+    <link href="bendoerr.me/blog/2011/06/20/groovy-inject/"/>
+    <updated>2011-06-20T12:00:00-04:00</updated>
+    <id>bendoerr.me/blog/2011/06/20/groovy-inject</id>
+    <content type="html">&lt;p&gt;When I started getting into functional programming I relaized that Groovy has some features which could be considered functional or higher-order functions. I commonly use methods like &lt;code&gt;findAll&lt;/code&gt; (&lt;code&gt;filter&lt;/code&gt;) and &lt;code&gt;collect&lt;/code&gt; (&lt;code&gt;map&lt;/code&gt;). As I was reading &lt;strong&gt;Beginning Scala&lt;/strong&gt; by &lt;em&gt;David Pollack&lt;/em&gt; I came across &lt;code&gt;fold&lt;/code&gt; which I had never used before. Groovy calls this &lt;code&gt;inject&lt;/code&gt;. &lt;code&gt;inject&lt;/code&gt; allows us to walk though a data structure calling a function on each node, the result of that function is then passed to the same function being called on the next node.&lt;/p&gt;
+
+&lt;h2&gt;Here are a few examples&lt;/h2&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - /usr/bin/python -c 'import sys; print &quot;%d.%d&quot; % sys.version_info[:2]'&lt;/p&gt;
+
+&lt;br /&gt;
+
+
+&lt;p&gt;Liquid error: undefined method `Py_IsInitialized' for RubyPython::Python:Module&lt;/p&gt;
+
+&lt;br /&gt;
+
+
+&lt;p&gt;Answering a fizzbuzz like this will not get you the job.
+Liquid error: undefined method `Py_IsInitialized' for RubyPython::Python:Module&lt;/p&gt;
+
+&lt;br /&gt;
+
+
+&lt;h2&gt;Pimp Groovy's List&lt;/h2&gt;
+
+&lt;p&gt;Groovy's &lt;code&gt;inject&lt;/code&gt; is considered a fold left since we work our way left to right. Groovy doesn't provide a fold right, however we can pimp java the same way Groovy does.&lt;/p&gt;
+
+&lt;p&gt;Liquid error: undefined method `Py_IsInitialized' for RubyPython::Python:Module&lt;/p&gt;
 </content>
   </entry>
   
