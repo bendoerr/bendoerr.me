@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>bendoerr.me</title>
+  <link href="bendoerr.me/atom.xml" rel="self"/>
+  <link href="bendoerr.me/"/>
+  <updated>2011-08-19T14:13:58-04:00</updated>
+  <id>bendoerr.me/</id>
+  <author>
+    <name>Benjamin R Doerr</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Groovy-inject</title>
+    <link href="bendoerr.me/blog/2011/06/20/groovy-inject/"/>
+    <updated>2011-06-20T14:41:00-04:00</updated>
+    <id>bendoerr.me/blog/2011/06/20/groovy-inject</id>
+    <content type="html">&lt;p&gt;This is a test.&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
