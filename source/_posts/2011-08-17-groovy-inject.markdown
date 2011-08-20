@@ -6,3 +6,6 @@ comments: false
 categories: 
 ---
 This is a test.
+{% codeblock foo.ruby %}
+def test do that
+{% endcodeblock %}
