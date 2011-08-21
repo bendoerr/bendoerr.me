@@ -88,44 +88,6 @@
     
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/20/test/">Groovy-inject</a></h1>
-    
-    
-      <p class="meta">
-
-
-
-
-<time datetime="2011-06-20 14:41:00 -0400" pubdate  updated >Jun 20<span>th</span>, 2011</time>
-
-
-</p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is a test.</p>
-
-<div><figure role=code><figcaption><span>foo.rb </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-</pre></td><td class='code' width='100%'><pre><code class='rb'><div class='line'><span class="k">def</span> <span class="nf">test</span> <span class="k">do</span> <span class="n">that</span>
-</div></code></pre></td></tr></table></div></figure></div>
-
-
-
-</div>
-  <footer>
-    <a rel="full-article" href="/blog/2011/06/20/test/">Read on &rarr;</a>
-  </footer>
-
-
-  </article>
-
-
-  <article>
-    
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2011/06/20/groovy-inject/">Groovy&#8217;s Fold</a></h1>
     
     
@@ -215,51 +177,7 @@
 
 <p>Groovy&#8217;s <code>inject</code> is considered a fold left since we work our way left to right. Groovy doesn&#8217;t provide a fold right, however we can pimp java the same way Groovy does.</p>
 
-<div><figure role=code><figcaption><span>pimp.java </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-<span class='line'>10</span>
-<span class='line'>11</span>
-<span class='line'>12</span>
-<span class='line'>13</span>
-<span class='line'>14</span>
-<span class='line'>15</span>
-<span class='line'>16</span>
-<span class='line'>17</span>
-<span class='line'>18</span>
-<span class='line'>19</span>
-<span class='line'>20</span>
-</pre></td><td class='code' width='100%'><pre><code class='java'><div class='line'><span class="kd">class</span> <span class="nc">FoldRight</span> <span class="o">{</span>
-</div><div class='line'>    <span class="kd">static</span> <span class="n">Object</span> <span class="nf">foldRight</span><span class="o">(</span><span class="n">List</span> <span class="n">self</span><span class="o">,</span> <span class="n">Object</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">closure</span><span class="o">)</span> <span class="o">{</span>
-</div><div class='line'>        <span class="n">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">initalValue</span>
-</div><div class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">ListIterator</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="na">listIterator</span><span class="o">(</span><span class="n">self</span><span class="o">.</span><span class="na">size</span><span class="o">());</span> <span class="n">iterator</span><span class="o">.</span><span class="na">hasPrevious</span><span class="o">();)</span> <span class="o">{</span>
-</div><div class='line'>            <span class="n">Object</span> <span class="n">node</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">previous</span><span class="o">()</span>
-</div><div class='line'>            <span class="n">value</span> <span class="o">=</span> <span class="n">closure</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span>
-</div><div class='line'>        <span class="o">}</span>
-</div><div class='line'>        <span class="k">return</span> <span class="n">value</span>
-</div><div class='line'>    <span class="o">}</span>
-</div><div class='line'>
-</div><div class='line'>    <span class="kd">static</span> <span class="n">Object</span> <span class="nf">injectRight</span><span class="o">(</span><span class="n">List</span> <span class="n">self</span><span class="o">,</span> <span class="n">Object</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">closure</span><span class="o">)</span> <span class="o">{</span>
-</div><div class='line'>        <span class="n">foldRight</span><span class="o">(</span><span class="n">self</span><span class="o">,</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">closure</span><span class="o">)</span>
-</div><div class='line'>    <span class="o">}</span>
-</div><div class='line'><span class="o">}</span>
-</div><div class='line'>
-</div><div class='line'><span class="c1">// Test it</span>
-</div><div class='line'><span class="n">use</span><span class="o">(</span><span class="n">FoldRight</span><span class="o">)</span> <span class="o">{</span>
-</div><div class='line'>    <span class="k">assert</span> <span class="s">&quot;dcba&quot;</span> <span class="o">==</span> <span class="o">[</span><span class="sc">&#39;a&#39;</span><span class="o">,</span><span class="sc">&#39;b&#39;</span><span class="o">,</span><span class="sc">&#39;c&#39;</span><span class="o">,</span><span class="sc">&#39;d&#39;</span><span class="o">].</span><span class="na">foldRight</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">}</span>
-</div><div class='line'>    <span class="k">assert</span> <span class="s">&quot;dcba&quot;</span> <span class="o">==</span> <span class="o">[</span><span class="sc">&#39;a&#39;</span><span class="o">,</span><span class="sc">&#39;b&#39;</span><span class="o">,</span><span class="sc">&#39;c&#39;</span><span class="o">,</span><span class="sc">&#39;d&#39;</span><span class="o">].</span><span class="na">injectRight</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">}</span>
-</div><div class='line'><span class="o">}</span>
-</div></code></pre></td></tr></table></div></figure></div>
-
-
-
+<p>Liquid error: ClassNotFound: no lexer for alias &#8216;groovy&#8217; found</p>
 </div>
   <footer>
     <a rel="full-article" href="/blog/2011/06/20/groovy-inject/">Read on &rarr;</a>
@@ -282,10 +200,6 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2011/06/20/test/">Groovy-inject</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2011/06/20/groovy-inject/">Groovy&#8217;s Fold</a>
