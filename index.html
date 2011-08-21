@@ -108,12 +108,12 @@
 
 <h2>Here are a few examples</h2>
 
-<div><figure role=code><figcaption><span>sum.java </span></figcaption>
+<div><figure role=code><figcaption><span>sum.groovy </span></figcaption>
  <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
 <span class='line'>2</span>
 <span class='line'>3</span>
 <span class='line'>4</span>
-</pre></td><td class='code' width='100%'><pre><code class='java'><div class='line'><span class="k">assert</span> <span class="mi">55</span> <span class="o">==</span> <span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">).</span><span class="na">inject</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">}</span>
+</pre></td><td class='code' width='100%'><pre><code class='groovy'><div class='line'><span class="k">assert</span> <span class="mi">55</span> <span class="o">==</span> <span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">).</span><span class="na">inject</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">}</span>
 </div><div class='line'>
 </div><div class='line'><span class="c1">// which is the same as</span>
 </div><div class='line'><span class="k">assert</span> <span class="mi">55</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">10</span>
@@ -127,7 +127,7 @@
 
 
 
-<div><figure role=code><figcaption><span>injectExample.java </span></figcaption>
+<div><figure role=code><figcaption><span>injectExample.groovy </span></figcaption>
  <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
 <span class='line'>2</span>
 <span class='line'>3</span>
@@ -140,8 +140,8 @@
 <span class='line'>10</span>
 <span class='line'>11</span>
 <span class='line'>12</span>
-</pre></td><td class='code' width='100%'><pre><code class='java'><div class='line'><span class="c1">// Say we wanted to map lower case characters to their upper case brothers</span>
-</div><div class='line'><span class="n">List</span> <span class="n">alphabetLower</span> <span class="o">=</span> <span class="o">[</span><span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="sc">&#39;b&#39;</span><span class="o">,</span> <span class="sc">&#39;c&#39;</span><span class="o">,</span> <span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="sc">&#39;e&#39;</span><span class="o">]</span>
+</pre></td><td class='code' width='100%'><pre><code class='groovy'><div class='line'><span class="c1">// Say we wanted to map lower case characters to their upper case brothers</span>
+</div><div class='line'><span class="n">List</span> <span class="n">alphabetLower</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="o">,</span> <span class="s1">&#39;b&#39;</span><span class="o">,</span> <span class="s1">&#39;c&#39;</span><span class="o">,</span> <span class="s1">&#39;d&#39;</span><span class="o">,</span> <span class="s1">&#39;e&#39;</span><span class="o">]</span>
 </div><div class='line'>
 </div><div class='line'><span class="n">Map</span> <span class="n">alphabetMap</span> <span class="o">=</span> <span class="o">[:]</span>
 </div><div class='line'><span class="n">alphabetLower</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span><span class="n">letter</span><span class="o">-&gt;</span>
@@ -162,9 +162,9 @@
 
 <p>Answering a fizzbuzz like this will not get you the job.</p>
 
-<div><figure role=code><figcaption><span>fizzbuzz.java </span></figcaption>
+<div><figure role=code><figcaption><span>fizzbuzz.groovy </span></figcaption>
  <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-</pre></td><td class='code' width='100%'><pre><code class='java'><div class='line'><span class="n">print</span> <span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">100</span><span class="o">).</span><span class="na">inject</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">){</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">s</span><span class="o">+=</span><span class="s">&quot;$i-${i%3?&#39;&#39;:&#39;fizz&#39;}${i%5?&#39;&#39;:&#39;buzz&#39;}\n&quot;</span><span class="o">}</span>
+</pre></td><td class='code' width='100%'><pre><code class='groovy'><div class='line'><span class="n">print</span> <span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">100</span><span class="o">).</span><span class="na">inject</span><span class="o">(</span><span class="s2">&quot;&quot;</span><span class="o">){</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">s</span><span class="o">+=</span><span class="s2">&quot;$i-${i%3?&#39;&#39;:&#39;fizz&#39;}${i%5?&#39;&#39;:&#39;buzz&#39;}\n&quot;</span><span class="o">}</span>
 </div></code></pre></td></tr></table></div></figure></div>
 
 
@@ -177,7 +177,51 @@
 
 <p>Groovy&#8217;s <code>inject</code> is considered a fold left since we work our way left to right. Groovy doesn&#8217;t provide a fold right, however we can pimp java the same way Groovy does.</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias &#8216;groovy&#8217; found</p>
+<div><figure role=code><figcaption><span>pimp.groovy </span></figcaption>
+ <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+<span class='line'>11</span>
+<span class='line'>12</span>
+<span class='line'>13</span>
+<span class='line'>14</span>
+<span class='line'>15</span>
+<span class='line'>16</span>
+<span class='line'>17</span>
+<span class='line'>18</span>
+<span class='line'>19</span>
+<span class='line'>20</span>
+</pre></td><td class='code' width='100%'><pre><code class='groovy'><div class='line'><span class="kd">class</span> <span class="nc">FoldRight</span> <span class="o">{</span>
+</div><div class='line'>    <span class="kd">static</span> <span class="n">Object</span> <span class="nf">foldRight</span><span class="o">(</span><span class="n">List</span> <span class="n">self</span><span class="o">,</span> <span class="n">Object</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">closure</span><span class="o">)</span> <span class="o">{</span>
+</div><div class='line'>        <span class="n">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">initalValue</span>
+</div><div class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">ListIterator</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="na">listIterator</span><span class="o">(</span><span class="n">self</span><span class="o">.</span><span class="na">size</span><span class="o">());</span> <span class="n">iterator</span><span class="o">.</span><span class="na">hasPrevious</span><span class="o">();)</span> <span class="o">{</span>
+</div><div class='line'>            <span class="n">Object</span> <span class="n">node</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">previous</span><span class="o">()</span>
+</div><div class='line'>            <span class="n">value</span> <span class="o">=</span> <span class="n">closure</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span>
+</div><div class='line'>        <span class="o">}</span>
+</div><div class='line'>        <span class="k">return</span> <span class="n">value</span>
+</div><div class='line'>    <span class="o">}</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="kd">static</span> <span class="n">Object</span> <span class="nf">injectRight</span><span class="o">(</span><span class="n">List</span> <span class="n">self</span><span class="o">,</span> <span class="n">Object</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">closure</span><span class="o">)</span> <span class="o">{</span>
+</div><div class='line'>        <span class="n">foldRight</span><span class="o">(</span><span class="n">self</span><span class="o">,</span> <span class="n">initalValue</span><span class="o">,</span> <span class="n">closure</span><span class="o">)</span>
+</div><div class='line'>    <span class="o">}</span>
+</div><div class='line'><span class="o">}</span>
+</div><div class='line'>
+</div><div class='line'><span class="c1">// Test it</span>
+</div><div class='line'><span class="n">use</span><span class="o">(</span><span class="n">FoldRight</span><span class="o">)</span> <span class="o">{</span>
+</div><div class='line'>    <span class="k">assert</span> <span class="s2">&quot;dcba&quot;</span> <span class="o">==</span> <span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="s1">&#39;b&#39;</span><span class="o">,</span><span class="s1">&#39;c&#39;</span><span class="o">,</span><span class="s1">&#39;d&#39;</span><span class="o">].</span><span class="na">foldRight</span><span class="o">(</span><span class="s2">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">}</span>
+</div><div class='line'>    <span class="k">assert</span> <span class="s2">&quot;dcba&quot;</span> <span class="o">==</span> <span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="s1">&#39;b&#39;</span><span class="o">,</span><span class="s1">&#39;c&#39;</span><span class="o">,</span><span class="s1">&#39;d&#39;</span><span class="o">].</span><span class="na">injectRight</span><span class="o">(</span><span class="s2">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">}</span>
+</div><div class='line'><span class="o">}</span>
+</div></code></pre></td></tr></table></div></figure></div>
+
+
+
 </div>
   <footer>
     <a rel="full-article" href="/blog/2011/06/20/groovy-inject/">Read on &rarr;</a>
