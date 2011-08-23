@@ -1,11 +1,12 @@
 require "rubygems"
 require "bundler/setup"
+require "stringex"
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "user@domain.com"
 document_root  = "~/website.com/"
-deploy_default = "push"
+deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
 deploy_branch  = "gh-pages"
@@ -63,7 +64,7 @@ task :new_post, :title do |t, args|
   require './plugins/titlecase.rb'
   args.with_defaults(:title => 'new-post')
   title = args.title
-  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.#{new_post_ext}"
+  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
     system "mkdir -p #{source_dir}/#{posts_dir}";
@@ -162,7 +163,19 @@ end
 ##############
 
 desc "Default deploy task"
-task :deploy => "#{deploy_default}" do
+multitask :deploy => [:copydot, "#{deploy_default}"] do
+end
+
+desc "copy dot files for deployment"
+task :copydot do
+  cd "#{source_dir}" do
+    exclusions = [".", "..", ".DS_Store"]
+    Dir[".*"].each do |file|
+      if !File.directory?(file) && !exclusions.include?(file)
+        cp(file, "../#{public_dir}");
+      end
+    end
+  end
 end
 
 desc "Deploy website via rsync"
@@ -172,7 +185,7 @@ task :rsync do
 end
 
 desc "deploy public directory to github pages"
-task :push do
+multitask :push do
   puts "## Deploying branch to Github Pages "
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
   system "cp -R #{public_dir}/* #{deploy_dir}"
