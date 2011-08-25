@@ -1,2 +1,96 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+@import "custom/no-noise";
+
+// Fonts
+.heading {
+  font-family: "Wire One", "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif;
+}
+.sans { font-family: Michroma, "PT Sans", "Helvetica Neue", Arial, sans-serif; }
+.serif { font-family: Artifika, "PT Serif", Georgia, Times, "Times New Roman", serif; }
+.mono { font-family: Droid Sans Mono, $mono; }
+
+body {
+	font-size: 0.8em;
+}
+
+#{headings()}{
+  @extend .sans;
+  text-rendering: auto;
+}
+
+h2, section h1 {
+  font-size: 1.5em;
+}
+h3, section h2, section section h1 {
+  font-size: 1.3em;
+}
+h4, section h3, section section h2, section section section h1 {
+  font-size: 1em;
+}
+h5, section h4, section section h3 {
+  font-size: .9em;
+}
+h6, section h5, section section h4, section section section h3 {
+  font-size: .8em;
+}
+
+// Heading
+body > header {
+	padding-bottom: 0em;
+}
+
+body > header h1 {
+  font-size: 3em;
+  letter-spacing: 0.145em;
+  text-shadow: 6px 6px 6px #ccc;
+}
+
+body > header h2 {
+  font-size: 0.8em;
+  text-shadow: 3px 3px 3px #ccc;
+  padding-bottom: 5px
+}
+
+body > nav {
+	//font-size: 1.1em;
+	@include background(linear-gradient($nav-bg, darken($nav-bg, 3), darken($nav-bg, 11)));
+}
+
+#content > div, #content .blog-index {
+	padding-top: 0em;
+	article { 
+		padding-top: 0.5em; 
+	} 
+}
+
+$articleHeaderSize: 1.5em;
+article {
+	header {
+		padding-top: 1.5em;
+		margin-bottom: 0em;
+		h1, #content .blog-index article h1 {	
+			font-size: $articleHeaderSize;
+			color: $red;
+		}
+	}
+}
+
+#content .blog-index {
+	article h1 {
+		font-size: $articleHeaderSize;
+	}
+}
+
+#content .entry-content {
+	padding-top: 1em;
+}
+
+.code-title {
+	@extend .sans;
+	text-align: left;
+	font-size: 0.8em;
+	line-height: 2.5em;
+	padding-left: 1em;
+}
