@@ -1,0 +1,16 @@
+safe:        true
+auto:        true
+server:      true
+baseurl:     /
+
+plugins:     ./_plugins
+future:      true
+lsi:         false
+pygments:    true
+markdown:    rdiscount
+permalink:   /:year/:month/:title.html
+
+rdiscount:
+  extensions: [smart]
+
+exclude: ["README.md", "LICENSE.md", "TODO.md", "build", "test"]
