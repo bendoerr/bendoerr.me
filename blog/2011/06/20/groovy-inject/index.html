@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>bendoerr.me</title>
+  <title>bendoerr.me: Groovy's Fold</title>
   <meta name="author" content="Benjamin R Doerr">
   
 
@@ -16,7 +16,7 @@
 
   
 
-  <link rel="canonical" href="bendoerr.me/index.html"/>
+  <link rel="canonical" href="bendoerr.me/blog/2011/06/20/groovy-inject/"/>
   <link href="/favicon.png" rel="shortcut icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -93,49 +93,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-
-
-
-  <article>
-    
+      <div>
+<article class="hentry">
+  
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/29/groovy-dsls-should-include-unit-test-harness/">How Do I Test That</a></h1>
-    
-    
-      <p class="meta">
-
-
-
-
-<time datetime="2011-06-29 18:27:00 -0400" pubdate  updated >Jun 29<span>th</span>, 2011</time>
-
-
-</p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Groovy</code> as a language provides an awesome toolset for creating builder/DSL&#8217;s to remove lots of boilerplate around libaries and improve readablility. However they come with a price, they are nearly impossible to mock out when you want to unit test that one bit of code burried down in it&#8217;s bowels.</p>
-
-<p>I first ran into this problem while using <code>Grails</code> <strong>webflow</strong>. Being an <strong>enterprisy</strong> (read lots of individual steps, with full sorting, filtering, and more) project our webflows quickly got very complex. Giving the <a href="http://www.springsource.com/people/grocher" title="Graeme Rocher Rocks">Graeme</a> and the <code>Grails</code> guys some credit they did provide a test case class to help with testing. What it allowed you to do was spin up a nearly fully functional instance (<code>integration</code> testing in <code>Grails</code> terminology) of your application and then force <code>events</code> that would then allow you to <strong>walk</strong> though the webflow. This was really overkill since we only wanted unit test like coverage on the webflows. The way that I go about testing, I would only need to do this sort of <code>integation</code> testing once, as a regression test to catch broken functionality when updating the webflow plugin. What I really want to test is all of that logic that I wrote inside the webflow.</p>
-
-<p>I end with a plea to developers everywhere. When you write a DSL or a <code>Groovy</code> builder, write a test harness as well. In the next post I&#8217;ll give an example of what a <code>Grails</code> webflow unit test harness could look like.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="/blog/2011/06/29/groovy-dsls-should-include-unit-test-harness/">Read on &rarr;</a>
-  </footer>
-
-
-  </article>
-
-
-  <article>
-    
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/20/groovy-inject/">Groovy&#8217;s Fold</a></h1>
+      <h1 class="entry-title">Groovy&#8217;s Fold</h1>
     
     
       <p class="meta">
@@ -151,7 +114,7 @@
   </header>
 
 
-  <div class="entry-content"><p>When I started getting into functional programming I relaized that Groovy has some features which could be considered functional or higher-order functions. I commonly use methods like <code>findAll (filter)</code> and <code>collect (map)</code>. As I was reading <strong>Beginning Scala</strong> by <em>David Pollack</em> I came across <code>fold</code> which I had never used before. Groovy calls this <code>inject</code>. <code>inject</code> allows us to walk though a data structure calling a function on each node, the result of that function is then passed to the same function being called on the next node.</p>
+<div class="entry-content"><p>When I started getting into functional programming I relaized that Groovy has some features which could be considered functional or higher-order functions. I commonly use methods like <code>findAll (filter)</code> and <code>collect (map)</code>. As I was reading <strong>Beginning Scala</strong> by <em>David Pollack</em> I came across <code>fold</code> which I had never used before. Groovy calls this <code>inject</code>. <code>inject</code> allows us to walk though a data structure calling a function on each node, the result of that function is then passed to the same function being called on the next node.</p>
 
 <h2>Here are a few examples</h2>
 
@@ -266,32 +229,68 @@
 
 
 </div>
+
+
   <footer>
-    <a rel="full-article" href="/blog/2011/06/20/groovy-inject/">Read on &rarr;</a>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ben Doerr</span></span>
+
+      
+
+
+
+
+<time datetime="2011-06-20 12:00:00 -0400" pubdate  updated >Jun 20<span>th</span>, 2011</time>
+
+
+
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/Functional-Programming/'>Functional Programming</a>, <a class='category' href='/blog/categories/Groovy/'>Groovy</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="bendoerr.me/blog/2011/06/20/groovy-inject/" data-via="bendoerr" data-counturl="bendoerr.me/blog/2011/06/20/groovy-inject/" >Tweet</a>
+  
+  
+  <g:plusone size="medium"></g:plusone>
+  
+</div>
+
+    
   </footer>
+</article>
 
-
-  </article>
-
-<nav role="pagination">
-  <div>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</nav>
-
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread"><div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'bendoerrme';
-    (function () {
-      var s = document.createElement('script'); s.async = true;
-      s.type = 'text/javascript';
-      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+  var disqus_shortname = 'bendoerrme';
+  var disqus_identifier = 'bendoerr.me/blog/2011/06/20/groovy-inject/';
+  var disqus_url = 'bendoerr.me/blog/2011/06/20/groovy-inject/';
+  //var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
+
 <aside role=sidebar>
   
     <section>
@@ -330,6 +329,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
