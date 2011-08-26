@@ -94,3 +94,14 @@ article {
 	line-height: 2.5em;
 	padding-left: 1em;
 }
+
+body > footer {
+  color: $footer-color;
+  @include background(linear-gradient(darken($footer-bg, 11), darken($footer-bg, 3), $footer-bg, $footer-bg, $footer-bg, $footer-bg, $footer-bg, $footer-bg));
+  border-top: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 0em;
+  @include border-bottom-radius(0em);
+  text-shadow: none;
+}
