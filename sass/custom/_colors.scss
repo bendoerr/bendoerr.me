@@ -21,6 +21,8 @@ $nav-bg: $header-bg;
 $nav-color: $red;
 $nav-border-top: nav-bg;
 
+$sidebar-bg: lighten(desaturate($red, 75), 50);
+
 $link-color: $red;
 $link-color-hover: darken($link-color, 25);
 

@@ -105,3 +105,11 @@ body > footer {
   @include border-bottom-radius(0em);
   text-shadow: none;
 }
+
+#blog-archives {
+  @media only screen and (min-width: 550px) {
+    article {
+      padding:{left: 6em; bottom: .7em;}
+    }
+  }
+}
