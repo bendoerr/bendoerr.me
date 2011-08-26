@@ -9,6 +9,8 @@ $red: #DC143C;
 $header-bg: darken($white, 5);
 $main-bg: $white;
 $page-bg: $white;
+$footer-bg: $header-bg;
+$footer-color: lighten($black, 10);
 
 $title-color: $black;
 $subtitle-color: $red;
