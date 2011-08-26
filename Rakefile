@@ -6,7 +6,7 @@ require "stringex"
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "user@domain.com"
 document_root  = "~/website.com/"
-deploy_default = "push"
+deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
 deploy_branch  = "gh-pages"
@@ -44,60 +44,57 @@ end
 
 desc "Generate jekyll site"
 task :generate do
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "## Generating Site with Jekyll"
   system "jekyll"
 end
 
 desc "Watch the site and regenerate when it changes"
 task :watch do
-require 'compass'
-require 'compass/exec'
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass."
   jekyllPid = spawn("jekyll --auto")
   compassPid = spawn("compass watch")
-  
-  trap("INT") { 
+
+  trap("INT") {
 	Process.kill(9, jekyllPid)
 	Process.kill(9, compassPid)
-	puts "Waiting for Jekyll and Compass to die."
-	sleep 5
-	puts "Done waiting. Bye bye."
 	exit 0
   }
-  
+
   Process.wait
 end
 
 desc "preview the site in a web browser"
 task :preview do
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
   jekyllPid = spawn("jekyll --auto")
   compassPid = spawn("compass watch")
-  rackupPid = spawn("rackup --port #{server_port}")  
-  
-  trap("INT") { 
+  rackupPid = spawn("rackup --port #{server_port}")
+
+  trap("INT") {
 	Process.kill(9, jekyllPid)
 	Process.kill(9, compassPid)
 	Process.kill(9, rackupPid)
-	puts "Waiting for Jekyll, Compass and Rack to die."
-	sleep 10
-	puts "Done waiting. Bye bye."
 	exit 0
   }
-  
+
   Process.wait
 end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
 task :new_post, :title do |t, args|
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   require './plugins/titlecase.rb'
+  mkdir_p "#{source_dir}/#{posts_dir}"
   args.with_defaults(:title => 'new-post')
   title = args.title
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
-    system "mkdir -p #{source_dir}/#{posts_dir}";
+    system "mkdir -p #{source_dir}/#{posts_dir}/";
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/&/,'&amp;').titlecase}\""
@@ -111,6 +108,7 @@ end
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
 desc "Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}"
 task :new_page, :filename do |t, args|
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   require './plugins/titlecase.rb'
   args.with_defaults(:filename => 'new-page')
   page_dir = source_dir
@@ -166,7 +164,6 @@ task :update_style, :theme do |t, args|
   end
   mv "sass", "sass.old"
   puts "## Moved styles into sass.old/"
-  mkdir_p "sass"
   cp_r "#{themes_dir}/"+theme+"/sass/", "sass"
   cp_r "sass.old/custom/.", "sass/custom"
   puts "## Updated Sass ##"
