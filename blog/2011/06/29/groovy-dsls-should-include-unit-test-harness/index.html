@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>bendoerr.me: How do I test that</title>
+  <title>How do I test that - bendoerr.me</title>
   <meta name="author" content="Benjamin R Doerr">
   
 
@@ -23,42 +23,6 @@
   <script src="http://s3.amazonaws.com/ender-js/jeesh.min.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="bendoerr.me" type="application/atom+xml"/>
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10501590-4']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-  
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-  
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Artifika' rel='stylesheet' type='text/css'>
@@ -107,10 +71,12 @@
 
 
 
-<time datetime="2011-06-29 18:27:00 -0400" pubdate  updated >Jun 29<span>th</span>, 2011</time>
+
+  
 
 
-</p>
+
+<time datetime="2011-06-29T18:27:00-04:00" pubdate  data-updated="true" >Jun 29<span>th</span>, 2011</time></p>
     
   </header>
 
@@ -135,15 +101,17 @@
 
 
 
-<time datetime="2011-06-29 18:27:00 -0400" pubdate  updated >Jun 29<span>th</span>, 2011</time>
+
+  
 
 
 
+<time datetime="2011-06-29T18:27:00-04:00" pubdate  data-updated="true" >Jun 29<span>th</span>, 2011</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/Groovy/'>Groovy</a>, <a class='category' href='/blog/categories/Testing/'>Testing</a>
+    <a class='category' href='/blog/categories/groovy/'>Groovy</a>, <a class='category' href='/blog/categories/testing/'>Testing</a>
   
 </span>
 
@@ -155,7 +123,7 @@
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="bendoerr.me/blog/2011/06/29/groovy-dsls-should-include-unit-test-harness/" data-via="bendoerr" data-counturl="bendoerr.me/blog/2011/06/29/groovy-dsls-should-include-unit-test-harness/" >Tweet</a>
   
   
-  <g:plusone size="medium"></g:plusone>
+  <div class="g-plusone" data-size="medium"></div>
   
 </div>
 
@@ -207,13 +175,43 @@
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
-      getTwitterFeed("bendoerr", 4, false);
+      getTwitterFeed("bendoerr", 10, true);
     });
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>
   
     <a href="http://twitter.com/bendoerr" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @bendoerr</a>
   
+</section>
+
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/bendoerr">@bendoerr</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'bendoerr',
+            count: 5,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -247,5 +245,41 @@ This work is published from:
 </p>
 
 </footer>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10501590-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
 </body>
 </html>
