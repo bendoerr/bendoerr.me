@@ -1,29 +1,30 @@
-{-# LANGUAGE OverloadedStrings, Arrows #-}
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import Prelude hiding (id)
-import Control.Category (id)
-import Control.Monad (forM_)
-import Control.Arrow (arr, (>>>), (***), second, (&&&))
-import Data.Monoid (mempty, mconcat)
-import Text.Blaze.Html.Renderer.String (renderHtml)
-import Text.Blaze ((!), toValue)
-import System.FilePath (joinPath, splitDirectories, takeDirectory)
-import Data.List (isInfixOf)
-import Text.HTML.TagSoup (Tag (..), renderTags, parseTags)
-import qualified Data.Map as M
-import qualified Text.Blaze.Html5 as H
-import qualified Text.Blaze.Html5.Attributes as A
-import qualified Data.Set as S
+import Control.Arrow (arr, (>>>), Arrow)
+import Data.Monoid (mempty)
 
 import Hakyll
 
+cssPath ::  Pattern a
 cssPath   = parseGlob "css/*"
+
+imgPath ::  Pattern a
 imgPath   = parseGlob "img/*"
+
+jsPath ::  Pattern a
 jsPath    = parseGlob "js/*"
+
+fontPath ::  Pattern a
 fontPath  = parseGlob "font/*"
+
+postsPath ::  Pattern a
 postsPath = parseGlob "posts/*"
+
+tagsPath ::  Pattern a
 tagsPath  = parseGlob "posts/tag/*"
+
+catsPath ::  Pattern a
 catsPath  = parseGlob "posts/category/*"
 
 main :: IO ()
@@ -38,7 +39,7 @@ main = hakyll $ do
     -- Route and Render posts
     match postsPath $ do
                       route   $ setExtension ".html"
-                      compile $ postCompiler
+                      compile postCompiler
 
     -- Build up index/posts pages.
     createAndRenderIndex "index.html" "Home"  mostRecent  "templates/postitem.html"  "templates/index.html"
@@ -83,6 +84,10 @@ makeTagList tag posts =
         >>> applyTemplateCompiler "templates/default.html"
         >>> relativizeUrlsCompiler
 
+createAndRenderTags :: Identifier (Tags String)
+                    -> Pattern (Page String)
+                    -> ([Page String] -> Tags String)
+                    -> RulesM ()
 createAndRenderTags c path readF = do
     create c        $ requireAll "posts/*" (\_ ps -> readF ps :: Tags String)
     match path      $ do
@@ -91,6 +96,13 @@ createAndRenderTags c path readF = do
                                  >>> arr tagsMap
                                  >>> arr (map (\(t, p) -> (fromCapture path t, makeTagList t p)))
 
+createAndRenderIndex :: Pattern (Page String)
+                     -> String
+                     -> ([Page String]
+                     -> [Page String])
+                     -> Identifier Template
+                     -> Identifier Template
+                     -> RulesM (Identifier (Page String))
 createAndRenderIndex path title whichPosts postTmplt tmplt = do
         match path     $  route idRoute
         create pathPat $  constA mempty
@@ -102,6 +114,7 @@ createAndRenderIndex path title whichPosts postTmplt tmplt = do
     where pathPat = fromCapture path ""
 
 
+mostRecent ::  [Page a] -> [Page a]
 mostRecent = take 1 . recentFirst
 
 -- | Turns body of the page into the teaser: anything up to the
@@ -109,6 +122,7 @@ mostRecent = take 1 . recentFirst
 -- <!--NOTEASERBEGIN--> and <!--NOTEASEREND--> marks (useful for
 -- keeping images out of teasers).
 --
+renderTeaser :: Control.Arrow.Arrow cat =>String -> cat (Page String) (Page String)
 renderTeaser field =  arr (copyBodyToField field)
                >>> arr (changeField field extractTeaser)
       where
@@ -118,4 +132,4 @@ renderTeaser field =  arr (copyBodyToField field)
         noTeaser [] = []
         noTeaser ("<!--NOTEASERBEGIN-->" : xs) = 
           drop 1 $ dropWhile (/= "<!--NOTEASEREND-->") xs
-        noTeaser (x : xs) = x : (noTeaser xs)
+        noTeaser (x : xs) = x : noTeaser xs
