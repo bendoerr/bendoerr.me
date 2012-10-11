@@ -33,6 +33,7 @@ main = hakyll $ do
     match imgPath  copyCompiler
     match jsPath   copyCompiler
     match fontPath copyCompiler
+    match "CNAME"  copyCompiler
 
     -- Route and Render posts
     match postsPath $ do
