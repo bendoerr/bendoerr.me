@@ -1,0 +1,31 @@
+
+        <!-- ------------------------------------------------------------ -->
+        <!-- - Article Template ----------------------------------------- -->
+        <!-- ------------------------------------------------------------ -->
+        <article>
+          <header>
+            <h1><a href="$url$">$title$</a></h1>
+            <p class="category pull-right"><span class="label label-info $category$">$postcategory$</span></p>
+            <p><time datatime="$xmldate$" pubdate>$date$</time></p>
+          </header>
+
+          $content$
+
+          <footer>
+            <p class="tags pull-right">$posttags$</p>
+            <p class="signoff">$author$</p>
+            <p class="comment-count">
+              <a href="$url$#comments"></a>
+              <a href="$url$#disqus_thread" data-disqus-identifier="$url$"></a>
+            </p>
+
+            <p class="social">
+              <div data-href="$url$"
+                  class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+              <a data-url="$url$" data-text="Post Title" data-via="bendoerr"
+                  href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </p>
+          </footer>
+        </article>
+
