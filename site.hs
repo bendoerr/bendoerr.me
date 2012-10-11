@@ -42,8 +42,10 @@ main = hakyll $ do
                       compile postCompiler
 
     -- Build up index/posts pages.
-    createAndRenderIndex "index.html" "Home"  mostRecent  "templates/postitem.html"  "templates/index.html"
-    createAndRenderIndex "posts.html" "Posts" recentFirst "templates/postshort.html" "templates/posts.html"
+    createAndRenderIndex "index.html" "Home"  mostRecent
+        "templates/postitem.html"  "templates/index.html"
+    createAndRenderIndex "posts.html" "Posts" recentFirst
+        "templates/postshort.html" "templates/posts.html"
 
     -- Build up tags/categories and their pages.
     createAndRenderTags "tags"       tagsPath readTags
@@ -89,12 +91,13 @@ createAndRenderTags :: Identifier (Tags String)
                     -> ([Page String] -> Tags String)
                     -> RulesM ()
 createAndRenderTags c path readF = do
-    create c        $ requireAll "posts/*" (\_ ps -> readF ps :: Tags String)
-    match path      $ do
-                      route       $  setExtension ".html"
-                      metaCompile $  require_ c
-                                 >>> arr tagsMap
-                                 >>> arr (map (\(t, p) -> (fromCapture path t, makeTagList t p)))
+        create c   $ requireAll "posts/*" (\ _ ps -> readF ps :: Tags String)
+        match path $ do
+                     route       $  setExtension ".html"
+                     metaCompile $  require_ c
+                                >>> arr tagsMap
+                                >>> arr (map compileTag)
+    where compileTag (t, p) = (fromCapture path t, makeTagList t p)
 
 createAndRenderIndex :: Pattern (Page String)
                      -> String
@@ -107,7 +110,8 @@ createAndRenderIndex path title whichPosts postTmplt tmplt = do
         match path     $  route idRoute
         create pathPat $  constA mempty
                       >>> arr (setField "pagetitle" title)
-                      >>> setFieldPageList whichPosts postTmplt "posts" "posts/*"
+                      >>> setFieldPageList
+                            whichPosts postTmplt "posts" "posts/*"
                       >>> applyTemplateCompiler tmplt
                       >>> applyTemplateCompiler "templates/default.html"
                       >>> relativizeUrlsCompiler
@@ -117,12 +121,13 @@ createAndRenderIndex path title whichPosts postTmplt tmplt = do
 mostRecent ::  [Page a] -> [Page a]
 mostRecent = take 1 . recentFirst
 
--- | Turns body of the page into the teaser: anything up to the
--- <!--MORE--> mark is the teaser, except for text between the
--- <!--NOTEASERBEGIN--> and <!--NOTEASEREND--> marks (useful for
--- keeping images out of teasers).
---
-renderTeaser :: Control.Arrow.Arrow cat =>String -> cat (Page String) (Page String)
+{- | Turns body of the page into the teaser: anything up to the
+ -   <!--MORE--> mark is the teaser, except for text between the
+ -   <!--NOTEASERBEGIN--> and <!--NOTEASEREND--> marks (useful for
+ -   keeping images out of teasers). -}
+renderTeaser :: Control.Arrow.Arrow cat
+             => String
+             -> cat (Page String) (Page String)
 renderTeaser field =  arr (copyBodyToField field)
                >>> arr (changeField field extractTeaser)
       where
@@ -130,6 +135,6 @@ renderTeaser field =  arr (copyBodyToField field)
         extractTeaser' = takeWhile (/= "<!--MORE-->")
 
         noTeaser [] = []
-        noTeaser ("<!--NOTEASERBEGIN-->" : xs) = 
+        noTeaser ("<!--NOTEASERBEGIN-->" : xs) =
           drop 1 $ dropWhile (/= "<!--NOTEASEREND-->") xs
         noTeaser (x : xs) = x : noTeaser xs
