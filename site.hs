@@ -30,15 +30,15 @@ catsPath  = parseGlob "posts/category/*"
 main :: IO ()
 main = hakyll $ do
     -- Copy CSS, Images, JavaScript and Fonts
-    match cssPath  copyCompiler
-    match imgPath  copyCompiler
-    match jsPath   copyCompiler
-    match fontPath copyCompiler
-    match "CNAME"  copyCompiler
+    match cssPath  copyRule
+    match imgPath  copyRule
+    match jsPath   copyRule
+    match fontPath copyRule
+    match "CNAME"  copyRule
 
     -- Route and Render posts
     match postsPath $ do
-                      route   $ setExtension ".html"
+                      route $ setExtension ".html"
                       compile postCompiler
 
     -- Build up index/posts pages.
@@ -70,13 +70,13 @@ postCompiler =  pageCompiler
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
-copyCompiler ::  RulesM (Pattern CopyFile)
-copyCompiler = do
-               route idRoute
-               compile copyFileCompiler
+copyRule ::  RulesM (Pattern CopyFile)
+copyRule = do
+           route idRoute
+           compile copyFileCompiler
 
-makeTagList :: String -> [Page String] -> Compiler () (Page String)
-makeTagList tag posts =
+tagListCompiler :: String -> [Page String] -> Compiler () (Page String)
+tagListCompiler tag posts =
     constA posts
         >>> pageListCompiler recentFirst "templates/postshort.html"
         >>> arr (copyBodyToField "posts" . fromBody)
@@ -97,7 +97,7 @@ createAndRenderTags c path readF = do
                      metaCompile $  require_ c
                                 >>> arr tagsMap
                                 >>> arr (map compileTag)
-    where compileTag (t, p) = (fromCapture path t, makeTagList t p)
+    where compileTag (t, p) = (fromCapture path t, tagListCompiler t p)
 
 createAndRenderIndex :: Pattern (Page String)
                      -> String
