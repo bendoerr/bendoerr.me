@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>bendoerr.me</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- ----------------------------------------------------------------- -->
+    <!-- - Top Navigation ------------------------------------------------ -->
+    <!-- ----------------------------------------------------------------- -->
+    <div id="site-navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="active"><a href="http://bendoerr.me">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------- -->
+    <!-- - Brand Header  ------------------------------------------------- -->
+    <!-- ----------------------------------------------------------------- -->
+    <header id="page-header" class="site-header">
+      <div class="container">
+        <hgroup class="">
+          <h1>bendoerr.me</h1>
+          <small>I saw where a blog was not, and said, no. This will not do.</small>
+        </hgroup>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- ---------------------------------------------------------------- -->
+      <!-- - Category Promotion   ----------------------------------------- -->
+      <!-- ---------------------------------------------------------------- -->
+      <section id="page-promo" class="row">
+        <div class="span3 offset1">
+          <img src="http://placehold.it/300x200" class="img-rounded">
+          <h3>Learning Haskell</h3>
+          <p>This is why you should rule the world.</p>
+        </div>
+        <div class="span3">
+          <img src="http://placehold.it/300x200" class="img-rounded">
+          <h3>Everyday Java</h3>
+          <p>This is why you should rule the world.</p>
+        </div>
+        <div class="span3">
+          <img src="http://placehold.it/300x200" class="img-rounded">
+          <h3>Gardening</h3>
+          <p>This is why you should rule the world.</p>
+        </div>
+      </section>
+
+      <div id="page-body" class="row">
+        <div id="page-content" class="span9">
+
+          <!-- ------------------------------------------------------------ -->
+          <!-- - Article Template ----------------------------------------- -->
+          <!-- ------------------------------------------------------------ -->
+          <article>
+            <header>
+              <h1>Post Title is Going Here</h1>
+              <p><time datatime="2012-01-01" pubdate>Monday, January 1<sup>st</sup>, 2012</time></p>
+            </header>
+
+            <p class="lead">Groovy as a language provides an awesome toolset
+            for creating builder/DSL's to remove lots of boilerplate around
+            libaries and improve readablility. However they come with a price,
+            they are nearly impossible to mock out when you want to unit test
+            that one bit of code burried down in it’s bowels.</p>
+
+            <p>I first ran into this problem while using Grails webflow. Being
+            an enterprisy (read lots of individual steps, with full sorting,
+            filtering, and more) project our webflows quickly got very complex.
+            Giving the Graeme and the Grails guys some credit they did provide
+            a test case class to help with testing. What it allowed you to do
+            was spin up a nearly fully functional instance (integration testing
+            in Grails terminology) of your application and then force events
+            that would then allow you to walk though the webflow. This was
+            really overkill since we only wanted unit test like coverage on the
+            webflows. The way that I go about testing, I would only need to do
+            this sort of integation testing once, as a regression test to catch
+            broken functionality when updating the webflow plugin. What I
+            really want to test is all of that logic that I wrote inside the
+            webflow.</p>
+
+            <p>I end with a plea to developers everywhere. When you write a DSL
+            or a Groovy builder, write a test harness as well. In the next post
+            I'll give an example of what a Grails webflow unit test harness
+            could look like.</p>
+
+            <footer>
+              <p class="signoff">Ben Doerr</p>
+              <p class="categories">Groovy, Testing</p>
+              <p class="comment-count">
+              <a href="http://bendoerr.me/this-posts-url#comments">Comment</a>
+              <a href="http://bendoerr.me/this-posts-url#disqus_thread"
+                data-disqus-identifier="this-posts-url"></a>
+              </p>
+
+              <div class="social">
+                <div data-href="http://bendoer.me/this-posts-url"
+                  class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+                <a data-url="http://bendoerr.me/this-posts-url" data-text="Post Title" data-via="bendoerr"
+                  href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+              </div>
+
+              <!--<div id="comments" class="comments">-->
+                <!--<div id="disqus_thread"></div>-->
+                <!--<script type="text/javascript">-->
+                  <!--var disqus_developer = 1; // developer mode is on-->
+                  <!--var disqus_shortname = 'bendoerrme';-->
+                  <!--var disqus_url = 'http://bendoerr.me/this-posts-url';-->
+                  <!--var disqus_identifier = 'this-posts-url';-->
+                  <!--var disqus_title = 'Post Title';-->
+
+                  <!--/* * * DON'T EDIT BELOW THIS LINE * * */-->
+                  <!--(function() {-->
+                   <!--var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;-->
+                   <!--dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';-->
+                   <!--(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);-->
+                   <!--})();-->
+                <!--</script>-->
+                <!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+              <!--</div>-->
+            </footer>
+          </article>
+
+
+          <!-- ------------------------------------------------------------ -->
+          <!-- - Article Template ----------------------------------------- -->
+          <!-- ------------------------------------------------------------ -->
+          <article>
+            <header>
+              <h1>Post Title is Going Here</h1>
+              <p><time datatime="2012-01-01" pubdate>Monday, January 1<sup>st</sup>, 2012</time></p>
+              </header>
+
+            <p class="lead">I end with a plea to developers everywhere. When
+            you write a DSL or a Groovy builder, write a test harness as well.
+            In the next post I'll give an example of what a Grails webflow unit
+            test harness could look like.</p>
+
+            <p>Groovy as a language provides an awesome toolset for creating
+            builder/DSL's to remove lots of boilerplate around libaries and
+            improve readablility. However they come with a price, they are
+            nearly impossible to mock out when you want to unit test that one
+            bit of code burried down in it’s bowels.</p>
+
+            <p>I first ran into this problem while using Grails webflow. Being
+            an enterprisy (read lots of individual steps, with full sorting,
+            filtering, and more) project our webflows quickly got very complex.
+            Giving the Graeme and the Grails guys some credit they did provide
+            a test case class to help with testing. What it allowed you to do
+            was spin up a nearly fully functional instance (integration testing
+            in Grails terminology) of your application and then force events
+            that would then allow you to walk though the webflow. This was
+            really overkill since we only wanted unit test like coverage on the
+            webflows. The way that I go about testing, I would only need to do
+            this sort of integation testing once, as a regression test to catch
+            broken functionality when updating the webflow plugin. What I
+            really want to test is all of that logic that I wrote inside the
+            webflow.</p>
+
+            <footer>
+              <p class="signoff">Ben Doerr</p>
+              <p class="categories">Groovy, Testing</p>
+              <p class="comment-count">
+              <a href="http://bendoerr.me/this-posts-url#comments">Comment</a>
+              <a href="http://bendoerr.me/this-posts-url#disqus_thread" data-disqus-identifier="this-posts-url"></a>
+              </p>
+
+              <div class="social">
+                <div data-href="http://bendoer.me/this-posts-url"
+                  class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+                <a data-url="http://bendoerr.me/this-posts-url" data-text="Post Title" data-via="bendoerr"
+                  href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+              </div>
+
+              <!--<div id="comments" class="comments">-->
+                <!--<div id="disqus_thread"></div>-->
+                <!--<script type="text/javascript">-->
+                  <!--var disqus_developer = 1; // developer mode is on-->
+                  <!--var disqus_shortname = 'bendoerrme';-->
+                  <!--var disqus_url = 'http://bendoerr.me/this-posts-url';-->
+                  <!--var disqus_identifier = 'this-posts-url';-->
+                  <!--var disqus_title = 'Post Title';-->
+
+                  <!--/* * * DON'T EDIT BELOW THIS LINE * * */-->
+                  <!--(function() {-->
+                   <!--var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;-->
+                   <!--dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';-->
+                   <!--(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);-->
+                   <!--})();-->
+                <!--</script>-->
+                <!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+              <!--</div>-->
+            </footer>
+
+          </article>
+        </div>
+
+
+        <!-- -------------------------------------------------------------- -->
+        <!-- - Sidebar ---------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
+        <div id="page-sidebar" class="span3">
+          <section id="about">
+            <h2>Ben Doerr</h2>
+            <img src="http://placehold.it/140x140" class="img-circle">
+            <p>This is where I am going to put a short self promotion. There is
+            a good reason for this and it is to sell myself so that I make more
+            money.</p>
+          </section>
+          <section id="recent_posts">
+            <h2>Recent Posts</h2>
+            <ul>
+              <li><a href="#">This was a post</a></li>
+              <li><a href="#">About this and that.</a></li>
+            </ul>
+          </section>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- - Site Footer ---------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------ -->
+    <footer>
+      <div class="container">
+
+        <div class="row visible-desktop">
+          <section id="information-desktop" class="span8">
+            <h4>Information & Copyright</h4>
+            <p>Powered by Hakyll, Bootstrap, Github, and Hover. Syntax highlighting by Pandoc. Icons by Font Awesome. Tagline inspired by Penny Arcade.</p>
+
+            <p>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+              <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
+            </a>
+            Except where otherwise noted, content on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">bendoerr.me</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://bendoerr.me" property="cc:attributionName" rel="cc:attributionURL">Benjamin R. Doerr</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+            </p>
+
+            <p>Get the source</p>
+          </section>
+
+          <section id="social-follow" class="span4">
+            <h4>Around the web</h4>
+            <ul class="unstyled">
+              <li><a class="btn btn-inverse btn-large" href="#"><i class="icon-github"></i> Github</a></li>
+              <li><a class="btn btn-inverse btn-large" href="#"><i class="icon-twitter"></i> Twitter</a></li>
+              <li><a class="btn btn-inverse btn-large" href="#"><i class="icon-google-plus"></i> Google+</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="row hidden-desktop">
+          <section id="information-desktop" class="span12">
+          <h4>Information & Copyright</h4>
+          <p class="hidden-phone">Powered by Hakyll, Bootstrap, Github, and Hover. Syntax highlighting by Pandoc. Icons by Font Awesome. Tagline inspired by Penny Arcade.</p>
+
+          <p>
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
+          </a>
+          Except where otherwise noted, content on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">bendoerr.me</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://bendoerr.me" property="cc:attributionName" rel="cc:attributionURL">Benjamin R. Doerr</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+          </p>
+
+          <p>Get the source</p>
+          </section>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Google+ Async Share Script -->
+    <script type="text/javascript">
+      (function () {
+       var po = document.createElement('script');
+       po.type = 'text/javascript';
+       po.async = true;
+       po.src = 'https://apis.google.com/js/plusone.js';
+       var s = document.getElementsByTagName('script')[0];
+       s.parentNode.insertBefore(po, s);
+       })();
+     </script>
+
+     <!-- Twitter Async Share Script -->
+     <script>
+       !function (d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (!d.getElementById(id)) {
+           js = d.createElement(s);
+           js.id = id;
+           js.src = "https://platform.twitter.com/widgets.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }
+       }(document, "script", "twitter-wjs");
+     </script>
+
+    <!-- Disqus Comment Counts -->
+    <script type="text/javascript">
+      var disqus_developer = 1; // developer mode is on
+      var disqus_shortname = 'bendoerrme';
+      var disqus_url = 'http://bendoerr.me/this-posts-url';
+      var disqus_identifier = 'this-posts-url';
+      var disqus_title = 'Post Title';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+       var s = document.createElement('script'); s.async = true;
+       s.type = 'text/javascript';
+       s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    </script>
+  </body>
+</html>
