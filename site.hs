@@ -2,12 +2,16 @@
 module Main where
 
 import Control.Arrow (arr, (>>>), Arrow)
+import Control.Monad (forM_)
 import Data.Monoid (mempty)
 
 import Hakyll
 
 cssPath ::  Pattern a
 cssPath   = parseGlob "css/*"
+
+lessPath :: Pattern a
+lessPath =  parseGlob "less/*"
 
 imgPath ::  Pattern a
 imgPath   = parseGlob "img/*"
@@ -29,17 +33,15 @@ catsPath  = parseGlob "posts/category/*"
 
 main :: IO ()
 main = hakyll $ do
-    -- Copy CSS, Images, JavaScript and Fonts
-    match cssPath  copyRule
-    match imgPath  copyRule
-    match jsPath   copyRule
-    match fontPath copyRule
-    match "CNAME"  copyRule
+    -- Copy Images, JavaScript and Fonts
+    copyAll [cssPath, imgPath, jsPath, fontPath, "CNAME"]
 
-    -- Route and Render posts
-    match postsPath $ do
-                      route $ setExtension ".html"
-                      compile postCompiler
+    bootstrap "bootstrap"
+    bootstrap "responsive"
+
+    lesscss
+
+    blogPosts
 
     -- Build up index/posts pages.
     createAndRenderIndex "index.html" "Home"  mostRecent
@@ -56,6 +58,25 @@ main = hakyll $ do
 
     -- End
     return ()
+
+copyAll rs = forM_ rs copy
+
+copy r = match r copyRule
+
+bootstrap ::  String -> RulesM (Pattern String)
+bootstrap css = match (bsPath css) $ do
+        route $ bsRoute css
+        compile lessc
+    where bsPath c = parseGlob $ "bootstrap/less/" ++ c ++ ".less"
+          bsRoute c = constRoute $ toFilePath (fromCapture cssPath (c ++ ".css"))
+
+lesscss = match lessPath $ do
+                           route $ setExtension ".css"
+                           compile lessc
+
+blogPosts = match postsPath $ do
+                              route $ setExtension ".html"
+                              compile postCompiler
 
 -- | Main post compiler
 postCompiler :: Compiler Resource (Page String)
@@ -138,3 +159,5 @@ renderTeaser field =  arr (copyBodyToField field)
         noTeaser ("<!--NOTEASERBEGIN-->" : xs) =
           drop 1 $ dropWhile (/= "<!--NOTEASEREND-->") xs
         noTeaser (x : xs) = x : noTeaser xs
+
+lessc = getResourceString >>> unixFilter "lessc" ["--include-path=bootstrap/less", "-"]
