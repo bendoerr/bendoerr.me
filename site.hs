@@ -71,7 +71,7 @@ bootstrap css = match (bsPath css) $ do
           bsRoute c = constRoute $ toFilePath (fromCapture cssPath (c ++ ".css"))
 
 lesscss = match lessPath $ do
-                           route $ setExtension ".css"
+                           route $ gsubRoute "less/" (const "css/") `composeRoutes` setExtension ".css"
                            compile lessc
 
 blogPosts = match postsPath $ do
