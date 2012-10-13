@@ -5,11 +5,11 @@ date: November 28, 2009
 category: Haskell
 tags: real-world-haskell, chapter-8
 ---
-Pellentesque tempor blandit elit, vel ultricies arcu congue egestas. Fusce 
+<p class="lead">Pellentesque tempor blandit elit, vel ultricies arcu congue egestas. Fusce 
 vitae rutrum nisl. Fusce id mauris libero, a venenatis tellus. Fusce iaculis, 
 lorem et ornare molestie, mauris risus mollis nisi, non fermentum lacus lacus 
 sit amet ipsum. Praesent lobortis ullamcorper dolor, eget convallis ligula 
-dignissim a.
+dignissim a.</p>
 
 <!--MORE-->
 

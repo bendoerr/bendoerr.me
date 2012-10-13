@@ -2,17 +2,18 @@
         <!-- ============================================================== -->
         <!-- = Article Short ============================================== -->
         <!-- ============================================================== -->
-        <article>
+        <article class="span6" style="margin-left:15px;">
           <header>
             <h1><a href="$url$">$title$</a></h1>
-            <p class="category pull-right"><span class="label label-info $category$">$postcategory$</span></p>
-            <p><time datatime="$xmldate$" pubdate>$date$</time></p>
+            <p><i class="icon-calendar"></i> <time datatime="$xmldate$" pubdate>$date$</time></p>
+            <p><span class="label label-category $category$">$postcategory$</span>
+            <i class="icon-tags"></i> $posttags$</p>
            </header>
 
           $teaser$
 
           <footer>
-            <a href="$url$" class="btn btn-inverse btn-small">Read More</a>
+            <a href="$url$" class="btn btn-primary btn-small">Read More</a>
           </footer>
         </article>
 

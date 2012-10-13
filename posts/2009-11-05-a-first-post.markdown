@@ -5,9 +5,9 @@ date: November 5, 2009
 category: Java
 tags: tips, tricks
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium leo 
+<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium leo 
 adipiscing lectus iaculis lobortis. Vivamus scelerisque velit dignissim metus 
-gravida sit amet dapibus ligula tempor. Quisque sit amet viverra nunc. 
+gravida sit amet dapibus ligula tempor. Quisque sit amet viverra nunc.</p>
 
 <!--MORE-->
 

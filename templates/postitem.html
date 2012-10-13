@@ -5,16 +5,17 @@
         <article>
           <header>
             <h1><a href="$url$">$title$</a></h1>
-            <p class="category pull-right"><span class="label label-info $category$">$postcategory$</span></p>
-            <p><time datatime="$xmldate$" pubdate>$date$</time></p>
+            <p class="category pull-right"><span class="label label-category $category$">$postcategory$</span></p>
+            <p><i class="icon-calendar"></i> <time datatime="$xmldate$" pubdate>$date$</time></p>
           </header>
 
           $content$
 
           <footer>
-            <p class="tags pull-right">$posttags$</p>
-            <p class="signoff">$author$</p>
+            <p class="tags pull-right"><i class="icon-tags"></i> $posttags$</p>
+            <p class="signoff"><i class="icon-pencil"></i> $author$</p>
             <p class="comment-count">
+              <i class="icon-comments-alt"></i>
               <a href="$url$#comments"></a>
               <a href="$url$#disqus_thread" data-disqus-identifier="$url$"></a>
             </p>

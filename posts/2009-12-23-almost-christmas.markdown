@@ -4,9 +4,9 @@ author: Publius Vergilius Maro
 tags: corn, sunflower
 category: Gardening
 ---
-Morbi tincidunt eleifend ante, eu gravida ante rutrum vel. Nunc bibendum nulla 
+<p class="lead">Morbi tincidunt eleifend ante, eu gravida ante rutrum vel. Nunc bibendum nulla 
 tellus, eget egestas sapien. Nam rhoncus interdum libero, eget congue orci 
-imperdiet eu.
+imperdiet eu.</p>
 
 <!--MORE-->
 

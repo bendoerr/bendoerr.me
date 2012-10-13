@@ -5,9 +5,9 @@ date: December 4, 2009
 category: Gardening
 tags: dirt, flowers
 ---
-Etiam non felis aliquet tellus dictum vestibulum. Aliquam accumsan mauris non 
+<p class="lead">Etiam non felis aliquet tellus dictum vestibulum. Aliquam accumsan mauris non 
 lacus ultricies nec lacinia enim rhoncus. Curabitur vel tortor massa, elementum 
-tincidunt elit.
+tincidunt elit.</p>
 
 <!--MORE-->
 

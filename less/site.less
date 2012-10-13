@@ -2,6 +2,7 @@
 // Site specific style on top of Bootstrap
 // ----------------------------------------------------------------------------
 
+@import "variables.less";
 @import "mixins.less";
 
 body {
@@ -9,10 +10,12 @@ body {
     padding-top: 36px;
 
     & > footer {
-        h4 { color: linen; }
+        h4 { color: @orangeDark; }
+
+        a { color: @orange; }
 
         background-image: url("../img/footer-bg.png");
-        color: whiteSmoke;
+        color: @grayLighter;
 
         min-height: 182px;
         padding-top: 25px;
@@ -28,15 +31,12 @@ body {
 .site-header {
     position: relative;
     padding: 40px 0;
-    color: linen;
+    color: @grayLighter;
     text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
-    background: #020031;
-    background: -moz-linear-gradient(45deg, #020031 0%, #6D3353 100%);
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6D3353));
-    background: -webkit-linear-gradient(45deg, #020031 0%,#6D3353 100%);
-    background: -o-linear-gradient(45deg, #020031 0%,#6D3353 100%);
-    background: -ms-linear-gradient(45deg, #020031 0%,#6D3353 100%);
-    background: linear-gradient(45deg, #020031 0%,#6D3353 100%);
+
+    background: @orangeDark;
+    #gradient > .horizontal(@orangeDark, darken(@orange, 10%));
+
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 );
     -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, .2), inset 0 -3px 7px rgba(0, 0, 0, .2);
     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
@@ -76,8 +76,8 @@ body {
 #social-follow {
     .btn-large {
         .border-radius(500px);
-        font-size: 18px;
-        color: whiteSmoke;
+        font-size: 16px;
+        color: @grayLighter;
 
         margin-bottom: 7px;
         margin-right: 7px;
@@ -90,7 +90,7 @@ body {
 }
 
 #page-promo {
-    margin-bottom: 25px;
+    margin-bottom: 75px;
 }
 
 article {
@@ -98,7 +98,11 @@ article {
 
     header {
         margin-bottom: 10px;
-        border-bottom: 1px dashed lightSlateGray;
+        border-bottom: 1px dashed @grayLight;
+
+        h1 a {
+            color: @grayDarker;
+        }
 
         p {
             margin-top: -10px;
@@ -106,4 +110,18 @@ article {
 
     }
 
+}
+
+.label a, .badge a {
+    color: @grayLighter;
+    font-weight: normal;
+}
+
+p .small {
+    font-size: @baseFontSize - 4;
+    padding-bottom: 2px;
+}
+
+.label-category {
+    background-color: @blue;
 }
