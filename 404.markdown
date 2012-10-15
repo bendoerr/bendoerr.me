@@ -1,0 +1,44 @@
+Sorry, there is no page here.
+=====
+
+If you followed a link and got here, I am truly sorry. I screwed up and
+moved something. It's best that you checkout the [blog index][blog] to find what
+you are looking for. Or maybe one of the following will help you find your way.
+
+[blog]: "http://bendoerr.me/blog.html" "Blog Index"
+
+Popular Categories
+-----
+
+<!-- ================================================================ -->
+<!-- = Category Promotion =========================================== -->
+<!-- ================================================================ -->
+<section id="page-promo" class="row">
+  <div class="span3 offset1">
+    <img src="/img/HaskellStyleLogo.png" class="hidden-phone" alt="Haskell Stylized Logo">
+    <h3><i class="icon-bullhorn"></i> Learning Haskell</h3>
+    <p>I started learning Haskell at the start of Summer '12 since I failed
+    miserable to understand Scala earlier. Haskell has been a great adventure
+    which I've taken at a leisurely pace.</p>
+    <p>Follow along as I learn more about Monads and maybe even Arrows.</p>
+    <a href="/posts/category/haskell.html" class="btn btn-primary">Haskell Category</a>
+  </div>
+  <div class="span3">
+    <img src="/img/EverydayJava.png" class="hidden-phone" alt="Java Coffee Stained Logo">
+    <h3><i class="icon-tasks"></i> Everyday Java</h3>
+    <p>Most days I can be found deep in some JVM based code, from Groovy and
+    Java, sometimes Scala and maybe one day Closure. I've been crafting on the
+    JVM since I began programming.</p>
+    <p>I'll share the tips and tricks that I discover everyday.</p>
+    <a href="/posts/category/java.html" class="btn btn-primary">JVM Languages</a>
+  </div>
+  <div class="span3">
+    <img src="./img/Gardening.png" class="hidden-phone" alt="Leaf and Question Logo">
+    <h3><i class="icon-leaf"></i> Gardening</h3>
+    <p>My non-technical passion is Gardening. I started keeping a Garden when I
+    moved to Virgina after college. If you haven't succeeded with a garden
+    before, don't worry nighter have I.</p>
+    <p>Watch as I fail, fail some more, and maybe succeed growing something.</p>
+    <a href="/posts/category/gardening.html" class="btn btn-primary">Garden Knowledge</a>
+  </div>
+</section>

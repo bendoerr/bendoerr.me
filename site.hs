@@ -53,14 +53,20 @@ main = hakyll $ do
     createAndRenderTags "tags"       tagsPath readTags
     createAndRenderTags "categories" catsPath readCategory
 
+    match "404.*" $ do
+                    route $ setExtension ".html"
+                    compile plainPageCompiler
+
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
     -- End
     return ()
 
+copyAll ::  [Pattern a] -> RulesM ()
 copyAll rs = forM_ rs copy
 
+copy ::  Pattern a -> RulesM (Pattern CopyFile)
 copy r = match r copyRule
 
 bootstrap ::  String -> RulesM (Pattern String)
@@ -70,13 +76,22 @@ bootstrap css = match (bsPath css) $ do
     where bsPath c = parseGlob $ "bootstrap/less/" ++ c ++ ".less"
           bsRoute c = constRoute $ toFilePath (fromCapture cssPath (c ++ ".css"))
 
+lesscss ::  RulesM (Pattern String)
 lesscss = match lessPath $ do
                            route $ gsubRoute "less/" (const "css/") `composeRoutes` setExtension ".css"
                            compile lessc
 
+blogPosts ::  RulesM (Pattern (Page String))
 blogPosts = match postsPath $ do
                               route $ setExtension ".html"
                               compile postCompiler
+
+plainPageCompiler ::  Compiler Resource (Page String)
+plainPageCompiler =  pageCompiler
+                  >>> arr (copyBodyToField "content")
+                  >>> applyTemplateCompiler "templates/page.html"
+                  >>> applyTemplateCompiler "templates/default.html"
+                  >>> relativizeUrlsCompiler
 
 -- | Main post compiler
 postCompiler :: Compiler Resource (Page String)
@@ -160,4 +175,5 @@ renderTeaser field =  arr (copyBodyToField field)
           drop 1 $ dropWhile (/= "<!--NOTEASEREND-->") xs
         noTeaser (x : xs) = x : noTeaser xs
 
+lessc ::  Compiler Resource String
 lessc = getResourceString >>> unixFilter "lessc" ["--include-path=bootstrap/less", "-"]
