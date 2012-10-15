@@ -1,0 +1,31 @@
+/*$base03:    #002b36;*/
+/*$base02:    #073642;*/
+/*$base01:    #586e75;*/
+/*$base00:    #657b83;*/
+/*$base0:     #839496;*/
+/*$base1:     #93a1a1;*/
+/*$base2:     #eee8d5;*/
+/*$base3:     #fdf6e3;*/
+/*$yellow:    #b58900;*/
+/*$orange:    #cb4b16;*/
+/*$red:       #dc322f;*/
+/*$magenta:   #d33682;*/
+/*$violet:    #6c71c4;*/
+/*$blue:      #268bd2;*/
+/*$cyan:      #2aa198;*/
+/*$green:     #859900;*/
+
+pre.sourceCode, table.sourceCode, table.sourceCode * { font-family: monospace; }
+pre.sourceCode span.kw { color: #b58900; font-weight: bold; }
+pre.sourceCode span.dt { color: #2aa198; }
+pre.sourceCode span.dv { color: #586e75; }
+pre.sourceCode span.bn { color: #cb4b16; }
+pre.sourceCode span.fl { color: #2aa198; }
+pre.sourceCode span.ch { color: #dc322f; }
+pre.sourceCode span.st { color: #d33682; }
+pre.sourceCode span.co { color: #586e75; font-style: italic; }
+pre.sourceCode span.ot { }
+pre.sourceCode span.al { color: #859900; font-weight: bold; }
+pre.sourceCode span.fu { color: #268bd2; }
+pre.sourceCode span.re { }
+pre.sourceCode span.er { color: #dc322f; font-weight: bold; }

@@ -1,0 +1,18 @@
+@media (max-width: 979px) {
+  .site-header {
+    margin-top: -35px;
+    z-index: -1;
+  }
+}
+@media (max-width: 767px) {
+  .site-header {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 10px;
+  }
+  body > footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 10px;
+  }
+}
