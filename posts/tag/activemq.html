@@ -8,11 +8,11 @@
     <title>bendoerr.me</title>
 
 
-    <link href="../css/bootstrap.css" rel="stylesheet"></link>
-    <link href="../css/responsive.css" rel="stylesheet">
-    <link href="../css/site.css" rel="stylesheet">
-    <link href="../css/site-responsive.css" rel="stylesheet">
-    <link href="../css/syntax.css" rel="stylesheet">
+    <link href="../../css/bootstrap.css" rel="stylesheet"></link>
+    <link href="../../css/responsive.css" rel="stylesheet">
+    <link href="../../css/site.css" rel="stylesheet">
+    <link href="../../css/site-responsive.css" rel="stylesheet">
+    <link href="../../css/syntax.css" rel="stylesheet">
   </head>
 
   <body>
@@ -24,10 +24,10 @@
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../posts.html">Blog</a></li>
-            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../posts.html">Blog</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -47,54 +47,36 @@
 
     <div class="container">
 
-      
+      <div id="page-body" class="row">
+
+  <div id="page-content" class="span12 activemq">
+      <h2 class="page-title">Posts from activemq</h2>
+      <div class="row-fluid">
+          
         <!-- ============================================================== -->
-        <!-- = Article Post =============================================== -->
+        <!-- = Article Short ============================================== -->
         <!-- ============================================================== -->
-        <article>
+        <article class="span6" style="margin-left:15px;">
           <header>
-            <h1><a href="../posts/2009-11-28-a-third-post.html">A third post</a></h1>
-            <p class="category pull-right"><span class="label label-category Haskell"><a href="../posts/category/Haskell.html">Haskell</a></span></p>
-            <p><i class="icon-calendar"></i> <time datatime="2009-11-28" pubdate>Saturday, November 28, 2009</time></p>
-          </header>
+            <h1><a href="../../posts/2012-10-14-activemq-jmx-purge.html">Purge ActiveMQ Queues</a></h1>
+            <p><i class="icon-calendar"></i> <time datatime="2012-10-14" pubdate>Sunday, October 14, 2012</time></p>
+            <p><span class="label label-category Java"><a href="../../posts/category/Java.html">Java</a></span>
+            <i class="icon-tags"></i> <a href="../../posts/tag/activemq.html">activemq</a>, <a href="../../posts/tag/jxm.html">jxm</a>, <a href="../../posts/tag/karaf.html">karaf</a></p>
+           </header>
 
-          <p class="lead">
-Pellentesque tempor blandit elit, vel ultricies arcu congue egestas. Fusce vitae rutrum nisl. Fusce id mauris libero, a venenatis tellus. Fusce iaculis, lorem et ornare molestie, mauris risus mollis nisi, non fermentum lacus lacus sit amet ipsum. Praesent lobortis ullamcorper dolor, eget convallis ligula dignissim a.
-</p>
+          <p>Whether for testing or some edge case sometimes you just need to clear out messages that have been building up. Here is an example of how you can clean all of a brokers queues using facilities exposed by <a href="http://en.wikipedia.org/wiki/Java_Management_Extensions" title="Wikipedia: Java Management Extensions">JMX</a> in ActiveMQ.</p>
 
-<!--MORE-->
-
-<p>Suspendisse nulla nisi, congue et pharetra vel, convallis non libero. Ut a nulla ipsum. Phasellus cursus velit id neque viverra ut pellentesque justo posuere. Curabitur laoreet enim et velit tempor consectetur. Donec eu pretium urna. Suspendisse vitae nisi at metus vestibulum aliquam in sit amet nisl. Donec convallis lacinia odio, vestibulum molestie nunc feugiat a. Suspendisse vehicula, sapien id aliquet consectetur, sem sapien ullamcorper arcu, scelerisque porttitor elit ipsum posuere ligula. Nulla at velit eu metus tincidunt auctor ut sit amet enim. Donec placerat dapibus nisi id facilisis. Maecenas pellentesque pulvinar auctor. Curabitur gravida quam sit amet purus consectetur blandit.</p>
 
           <footer>
-            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/real-world-haskell.html">real-world-haskell</a>, <a href="../posts/tag/chapter-8.html">chapter-8</a></p>
-            <p class="signoff"><i class="icon-pencil"></i> Publius Ovidius Naso</p>
-
-            <p class="social">
-              <div data-href="/posts/2009-11-28-a-third-post.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
-
-              <a data-url="/posts/2009-11-28-a-third-post.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-            </p>
-
-            <div id="comments" class="comments">
-              <div id="disqus_thread"></div>
-                <script type="text/javascript">
-                    var disqus_developer = 1; // developer mode is on
-                    var disqus_shortname = 'bendoerrme';
-                    var disqus_identifier = '/posts/2009-11-28-a-third-post.html';
-                    var disqus_title = 'A third post';
-
-                    /* * * DON'T EDIT BELOW THIS LINE * * */
-                    (function() {
-                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                </script>
-                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </div>
+            <a href="../../posts/2012-10-14-activemq-jmx-purge.html" class="btn btn-primary btn-small">Read More</a>
           </footer>
         </article>
+
+
+      </div>
+  </div>
+
+</div>
 
 
     </div>

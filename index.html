@@ -90,73 +90,35 @@
         <!-- ============================================================ -->
         <article>
           <header>
-            <h1><a href="./posts/2011-06-20-groovy-inject.html">Groovy's Inject</a></h1>
+            <h1><a href="./posts/2012-10-15-camel-jmx-stop-start.html">Stop and Start All Camel Routes</a></h1>
             <p class="category pull-right"><span class="label label-category Java"><a href="./posts/category/Java.html">Java</a></span></p>
-            <p><i class="icon-calendar"></i> <time datatime="2011-06-20" pubdate>Monday, June 20, 2011</time></p>
+            <p><i class="icon-calendar"></i> <time datatime="2012-10-15" pubdate>Monday, October 15, 2012</time></p>
           </header>
 
-          <p class="lead">
-When I started getting into functional programming I relaized that Groovy has some features which could be considered functional or higher-order functions. I commonly use methods like <code>findAll (filter)</code> and <code>collect (map)</code>. As I was reading <strong>Beginning Scala</strong> by <em>David Pollack</em> I came across <code>fold</code> which I had never used before. Groovy calls this <code>inject</code>. <code>inject</code> allows us to walk though a data structure calling a function on each node, the result of that function is then passed to the same function being called on the next node.
-</p>
-
+          <p>Here is a quick example of how you might stop all Camel routes regardless of the <code>CamelContext</code>. I assume that you have prior knowledge of how to connect via JMX, or you can see my last <a href="http://bendoerr.me/posts/2012-10-14-activemq-jmx-purge.html" title="Purge ActiveMQ Queues">post</a> on Purging ActiveMQ Queues via JMX.</p>
 <!--MORE-->
 
-<h2 id="here-are-a-few-examples">Here are a few examples</h2>
-<pre class="sourceCode java"><code class="sourceCode java">assert <span class="dv">55</span> == (<span class="dv">1</span>..<span class="dv">10</span>).<span class="fu">inject</span>(<span class="dv">0</span>) { a,b-&gt; a + b }
-
-<span class="co">// which is the same as</span>
-assert <span class="dv">55</span> == <span class="dv">0</span> + <span class="dv">1</span> + <span class="dv">2</span> + <span class="dv">3</span> + <span class="dv">4</span> + <span class="dv">5</span> + <span class="dv">6</span> + <span class="dv">7</span> + <span class="dv">8</span> + <span class="dv">9</span> + <span class="dv">10</span></code></pre>
-<br />
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Say we wanted to map lower case characters to their upper case brothers</span>
-List alphabetLower = ['a', 'b', 'c', 'd', 'e']
-
-Map alphabetMap = [:]
-alphabetLower.<span class="fu">each</span> {letter-&gt;
-    alphabetMap.<span class="fu">put</span>(letter, letter.<span class="fu">toUpperCase</span>())
-}
-
-<span class="co">// We can rerwite that as </span>
-Map alphabetMap = alphabetLower.<span class="fu">inject</span>([:]) {map, letter-&gt;
-    map.<span class="fu">put</span>(letter, letter.<span class="fu">toUpperCase</span>())
+<pre class="sourceCode java"><code class="sourceCode java">ObjectName jmxRoutesName = <span class="kw">new</span> ObjectName(<span class="st">&quot;org.apache.camel:type=routes,*&quot;</span>);
+<span class="kw">for</span> (ObjectName jmxRouteName : conn.<span class="fu">queryNames</span>(jmxRoutesName, <span class="kw">null</span>)) {
+    ManagedRouteMBean routeMBean =
+            MBeanServerInvocationHandler.<span class="fu">newProxyInstance</span>(conn, jmxRouteName, ManagedRouteMBean.<span class="fu">class</span>, <span class="kw">true</span>);
+    routeMBean.<span class="fu">stop</span>();
 }</code></pre>
-<p><br /> Answering a fizzbuzz like this will not get you the job.</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">print</span> (<span class="dv">1</span>..<span class="dv">100</span>).<span class="fu">inject</span>(<span class="st">&quot;&quot;</span>){s,i-&gt;s+=<span class="st">&quot;$i-${i%3?'':'fizz'}${i%5?'':'buzz'}</span><span class="ch">\n</span><span class="st">&quot;</span>} </code></pre>
-<h2 id="pimp-groovys-list">Pimp Groovy’s List</h2>
-<p>Groovy’s <code>inject</code> is considered a fold left since we work our way left to right. Groovy doesn’t provide a fold right, however we can pimp java the same way Groovy does.</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FoldRight {
-    <span class="dt">static</span> Object <span class="fu">foldRight</span>(List self, Object initalValue, Closure closure) {
-        Object value = initalValue
-        <span class="kw">for</span> (ListIterator iterator = self.<span class="fu">listIterator</span>(self.<span class="fu">size</span>()); iterator.<span class="fu">hasPrevious</span>();) {
-            Object node = iterator.<span class="fu">previous</span>()
-            value = closure.<span class="fu">call</span>(value, node)
-        }
-        <span class="kw">return</span> value
-    }
-
-    <span class="dt">static</span> Object <span class="fu">injectRight</span>(List self, Object initalValue, Closure closure) {
-        <span class="fu">foldRight</span>(self, initalValue, closure)
-    }
-}
-
-<span class="co">// Test it</span>
-<span class="fu">use</span>(FoldRight) {
-    assert <span class="st">&quot;dcba&quot;</span> == ['a','b','c','d'].<span class="fu">foldRight</span>(<span class="st">&quot;&quot;</span>) {a,b-&gt; a+b }
-    assert <span class="st">&quot;dcba&quot;</span> == ['a','b','c','d'].<span class="fu">injectRight</span>(<span class="st">&quot;&quot;</span>) {a,b-&gt; a+b }
-}</code></pre>
+<p>The <a href="http://camel.apache.org/maven/current/camel-core/apidocs/org/apache/camel/api/management/mbean/ManagedRouteMBean.html" title="Interface ManagedRouteMBean">ManagedRouteMBean</a> has quite a bit of other usefulness in it.</p>
 
           <footer>
-            <p class="tags pull-right"><i class="icon-tags"></i> <a href="./posts/tag/groovy.html">groovy</a>, <a href="./posts/tag/functional.html">functional</a></p>
+            <p class="tags pull-right"><i class="icon-tags"></i> <a href="./posts/tag/camel.html">camel</a>, <a href="./posts/tag/jmx.html">jmx</a></p>
             <p class="signoff"><i class="icon-pencil"></i> Ben Doerr</p>
             <p class="comment-count">
               <i class="icon-comments-alt"></i>
-              <a href="./posts/2011-06-20-groovy-inject.html#comments"></a>
-              <a href="./posts/2011-06-20-groovy-inject.html#disqus_thread" data-disqus-identifier="/posts/2011-06-20-groovy-inject.html"></a>
+              <a href="./posts/2012-10-15-camel-jmx-stop-start.html#comments"></a>
+              <a href="./posts/2012-10-15-camel-jmx-stop-start.html#disqus_thread" data-disqus-identifier="/posts/2012-10-15-camel-jmx-stop-start.html"></a>
             </p>
 
             <p class="social">
-              <div data-href="/posts/2011-06-20-groovy-inject.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
+              <div data-href="/posts/2012-10-15-camel-jmx-stop-start.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
 
-              <a data-url="/posts/2011-06-20-groovy-inject.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+              <a data-url="/posts/2012-10-15-camel-jmx-stop-start.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
             </p>
           </footer>
         </article>

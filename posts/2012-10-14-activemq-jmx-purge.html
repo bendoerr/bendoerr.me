@@ -53,36 +53,61 @@
         <!-- ============================================================== -->
         <article>
           <header>
-            <h1><a href="../posts/2009-11-05-a-first-post.html">A first post</a></h1>
+            <h1><a href="../posts/2012-10-14-activemq-jmx-purge.html">Purge ActiveMQ Queues</a></h1>
             <p class="category pull-right"><span class="label label-category Java"><a href="../posts/category/Java.html">Java</a></span></p>
-            <p><i class="icon-calendar"></i> <time datatime="2009-11-05" pubdate>Thursday, November  5, 2009</time></p>
+            <p><i class="icon-calendar"></i> <time datatime="2012-10-14" pubdate>Sunday, October 14, 2012</time></p>
           </header>
 
-          <p class="lead">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium leo adipiscing lectus iaculis lobortis. Vivamus scelerisque velit dignissim metus gravida sit amet dapibus ligula tempor. Quisque sit amet viverra nunc.
-</p>
-
+          <p>Whether for testing or some edge case sometimes you just need to clear out messages that have been building up. Here is an example of how you can clean all of a brokers queues using facilities exposed by <a href="http://en.wikipedia.org/wiki/Java_Management_Extensions" title="Wikipedia: Java Management Extensions">JMX</a> in ActiveMQ.</p>
 <!--MORE-->
 
-<p>Suspendisse cursus elementum ante, ut venenatis nisi dictum eu. Nulla diam ligula, eleifend in varius quis, malesuada a nibh. Vivamus consequat pellentesque erat non blandit. Nunc sit amet eros vel massa semper ullamcorper quis iaculis magna. Vestibulum ullamcorper urna sit amet est elementum pulvinar. Vestibulum consequat lacus ac quam hendrerit tincidunt. Praesent bibendum vehicula diam, nec sagittis risus tempus a. Nulla quis odio sit amet odio vehicula cursus ut id odio. Curabitur semper magna euismod magna mollis venenatis. Nunc eget eleifend velit. Mauris sed posuere sem. Fusce id nunc nisi, a aliquam orci. Suspendisse laoreet justo non enim laoreet eget consequat velit porttitor. Aenean faucibus sodales metus at tincidunt. Donec vestibulum leo pulvinar erat auctor ac ultrices massa euismod. Phasellus blandit cursus magna, eget lacinia mi lobortis sed. Suspendisse ultricies enim ligula, vel scelerisque mauris.</p>
+<p>The JMX url that you use to connect will depend on how you have <a href="http://activemq.apache.org/jmx.html" title="ActiveMQ JMX Feature">configured</a> your ActiveMQ broker. I was running an embedded broker in a <a href="http://karaf.apache.org/" title="Karaf OSGi Runtime">Karaf</a> OSGi container that was configured to use JMX but not create a new JMX connection. It took me a minute or two to figure out the correct JMX url of <code>service:jmx:rmi://0.0.0.0:44444/jndi/rmi://0.0.0.0:1099/jmxrmi</code> so I share it here for prosperity.</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;broker</span><span class="ot"> xmlns=</span><span class="st">&quot;http://activemq.org/config/1.0&quot;</span><span class="ot"> brokerName=</span><span class="st">&quot;mqbroker&quot;</span><span class="ot"> useJmx=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+  ...
+  <span class="kw">&lt;managementContext&gt;</span>
+     <span class="kw">&lt;managementContext</span><span class="ot"> createConnector=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/managementContext&gt;</span>
+  ...
+<span class="kw">&lt;/broker&gt;</span></code></pre>
+<p>The first thing is to create a <a href="http://docs.oracle.com/javase/7/docs/api/javax/management/MBeanServerConnection.html" title="Interface MBeanServerConnection">MBeanServerConnection</a> which we can then use to look up our <a href="http://activemq.apache.org/maven/5.7.0/activemq-core/apidocs/org/apache/activemq/broker/jmx/BrokerViewMBean.html" title="Interface BrokerViewMBean">BrokerViewMBean</a> and <a href="http://activemq.apache.org/maven/5.7.0/activemq-core/apidocs/org/apache/activemq/broker/jmx/QueueViewMBean.html" title="Interface QueueViewMBean">QueueViewMBean</a> by creating a connection from the <a href="http://docs.oracle.com/javase/7/docs/api/javax/management/remote/JMXConnectorFactory.html" title="Class JMXConnectorFactory">JMXConnectorFactory</a>.</p>
+<pre class="sourceCode java"><code class="sourceCode java">JMXServiceURL url = <span class="kw">new</span> JMXServiceURL(<span class="st">&quot;service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi&quot;</span>);
+JMXConnector jmxc = <span class="kw">null</span>;
+<span class="kw">try</span> {
+    jmxc = JMXConnectorFactory.<span class="fu">connect</span>(url))
+    MBeanServerConnection conn = jmxc.<span class="fu">getMBeanServerConnection</span>();</code></pre>
+<p>Now that you have the connection you can query it for the <code>BrokerViewMBean</code>.</p>
+<pre class="sourceCode java"><code class="sourceCode java">    ObjectName jmxBrokerName = <span class="kw">new</span> ObjectName(<span class="st">&quot;org.apache.activemq:BrokerName=mqbroker,Type=Broker&quot;</span>);
+    BrokerViewMBean brokerView =
+            MBeanServerInvocationHandler.<span class="fu">newProxyInstance</span>(conn, jmxBrokerName, BrokerViewMBean.<span class="fu">class</span>, <span class="kw">true</span>);</code></pre>
+<p>From the broker view you can get all of the queue names and then query those and finally purge them.</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">for</span> (ObjectName jmxQueueName : mbean.<span class="fu">getQueues</span>()) {
+        QueueViewMBean queueView =
+            MBeanServerInvocationHandler.<span class="fu">newProxyInstance</span>(conn, jmxQueueName, QueueViewMBean.<span class="fu">class</span>, <span class="kw">true</span>);
+        queueView.<span class="fu">purge</span>();
+    }</code></pre>
+<p>The don’t forget to clean up.</p>
+<pre class="sourceCode java"><code class="sourceCode java">} <span class="kw">finally</span> {
+    <span class="kw">if</span> (jmxc != <span class="kw">null</span>)
+        jmxc.<span class="fu">close</span>();
+}</code></pre>
+<p>There is a bunch more that is exposed via these MBeans that is useful in monitoring your broker as well. I suggest taking a look at the JavaDocs if that interests you.</p>
 
           <footer>
-            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/tips.html">tips</a>, <a href="../posts/tag/tricks.html">tricks</a></p>
-            <p class="signoff"><i class="icon-pencil"></i> Julius Caesar</p>
+            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/activemq.html">activemq</a>, <a href="../posts/tag/jxm.html">jxm</a>, <a href="../posts/tag/karaf.html">karaf</a></p>
+            <p class="signoff"><i class="icon-pencil"></i> Ben Doerr</p>
 
             <p class="social">
-              <div data-href="/posts/2009-11-05-a-first-post.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
+              <div data-href="/posts/2012-10-14-activemq-jmx-purge.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
 
-              <a data-url="/posts/2009-11-05-a-first-post.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+              <a data-url="/posts/2012-10-14-activemq-jmx-purge.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
             </p>
 
             <div id="comments" class="comments">
               <div id="disqus_thread"></div>
                 <script type="text/javascript">
-                    var disqus_developer = 1; // developer mode is on
                     var disqus_shortname = 'bendoerrme';
-                    var disqus_identifier = '/posts/2009-11-05-a-first-post.html';
-                    var disqus_title = 'A first post';
+                    var disqus_identifier = '/posts/2012-10-14-activemq-jmx-purge.html';
+                    var disqus_title = 'Purge ActiveMQ Queues';
 
                     /* * * DON'T EDIT BELOW THIS LINE * * */
                     (function() {
