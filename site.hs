@@ -1,44 +1,49 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
+import System.FilePath (takeFileName)
 import Control.Arrow (arr, (>>>), Arrow)
 import Control.Monad (forM_)
 import Data.Monoid (mempty)
 
 import Hakyll
 
-cssPath ::  Pattern a
-cssPath   = parseGlob "css/*"
+cssPath :: Pattern a
+cssPath = parseGlob "css/*"
 
 lessPath :: Pattern a
-lessPath =  parseGlob "less/*"
+lessPath = parseGlob "less/*"
 
-imgPath ::  Pattern a
-imgPath   = parseGlob "img/*"
+imgPath :: Pattern a
+imgPath = parseGlob "img/*"
 
-jsPath ::  Pattern a
-jsPath    = parseGlob "js/*"
+jsPath :: Pattern a
+jsPath = parseGlob "js/*"
 
-fontPath ::  Pattern a
-fontPath  = parseGlob "font/*"
+fontFPath :: Pattern a
+fontFPath = parseGlob "Font-Awesome/font/*"
 
-postsPath ::  Pattern a
+fontTPath :: Pattern a
+fontTPath = parseGlob "font/*"
+
+postsPath :: Pattern a
 postsPath = parseGlob "posts/*"
 
-tagsPath ::  Pattern a
-tagsPath  = parseGlob "posts/tag/*"
+tagsPath :: Pattern a
+tagsPath = parseGlob "posts/tag/*"
 
-catsPath ::  Pattern a
-catsPath  = parseGlob "posts/category/*"
+catsPath :: Pattern a
+catsPath = parseGlob "posts/category/*"
 
 main :: IO ()
 main = hakyll $ do
     -- Copy Images, JavaScript and Fonts
-    copyAll [cssPath, imgPath, jsPath, fontPath, "CNAME"]
+    copyAll [cssPath, imgPath, jsPath, "CNAME"]
+    copyTo fontFPath fontTPath
 
+    -- Create CSS from LESS
     bootstrap "bootstrap"
     bootstrap "responsive"
-
     lesscss
 
     blogPosts
@@ -68,6 +73,12 @@ copyAll rs = forM_ rs copy
 
 copy ::  Pattern a -> RulesM (Pattern CopyFile)
 copy r = match r copyRule
+
+copyTo ::  Pattern a1 -> Pattern a -> RulesM (Pattern CopyFile)
+copyTo f t = match f $ do
+                       route $ customRoute copyToRoute
+                       compile copyFileCompiler
+    where copyToRoute = toFilePath . fromCapture t . takeFileName . identifierPath
 
 bootstrap ::  String -> RulesM (Pattern String)
 bootstrap css = match (bsPath css) $ do
