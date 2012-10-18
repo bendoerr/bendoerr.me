@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+    <title>bendoerr.me</title>
+
+
+    <link href="../css/bootstrap.css" rel="stylesheet"></link>
+    <link href="../css/responsive.css" rel="stylesheet">
+    <link href="../css/site.css" rel="stylesheet">
+    <link href="../css/site-responsive.css" rel="stylesheet">
+    <link href="../css/syntax.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- ================================================================== -->
+    <!-- = Top Navigation ================================================= -->
+    <!-- ================================================================== -->
+    <div id="site-navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../posts.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- = Brand Header =================================================== -->
+    <!-- ================================================================== -->
+    <header id="page-header" class="site-header">
+      <div class="container">
+        <hgroup class>
+          <h1>bendoerr.me</h1>
+          <small>I saw where a blog was not, and said, no. This will not do.</small>
+        </hgroup>
+      </div>
+    </header>
+
+    <div class="container">
+
+      
+        <!-- ============================================================== -->
+        <!-- = Article Post =============================================== -->
+        <!-- ============================================================== -->
+        <article>
+          <header>
+            <h1><a href="../posts/2012-06-21-graham-scan.html">Chapter 3 Boss</a></h1>
+            <p class="category pull-right"><span class="label label-category Haskell"><a href="../posts/category/Haskell.html">Haskell</a></span></p>
+            <p><i class="icon-calendar"></i> <time datatime="2012-06-21" pubdate>Thursday, June 21, 2012</time></p>
+          </header>
+
+          <p>Chapter 3 of <a href="http://book.realworldhaskell.org/" title="Read Real World Haskell Online">Real World Haskell</a> ends with an epic boss. Exercise question 12 states:</p>
+<blockquote>
+<p>Using the code from the preceding three exercises, implement Graham’s scan algorithm for the convex hull of a set of 2D points. You can find good description of what a convex hull is, and how the Graham scan algorithm should work, on Wikipedia.</p>
+</blockquote>
+<p>Yea I just said WTF out loud too.</p>
+<!--MORE-->
+
+<p>It took me a day or so but I accomplished the task and here is a walk though. But first we will need the previous two questions and their answers that I came up with.</p>
+<h2 id="exercise-10">Exercise 10</h2>
+<blockquote>
+<p>Write a function that calculates the turn made by three two-dimensional points and returns a Direction.</p>
+</blockquote>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Direction</span> <span class="fu">=</span> <span class="dt">LEFT</span> <span class="fu">|</span> <span class="dt">RIGHT</span> <span class="fu">|</span> <span class="dt">STRAIGHT</span>
+                 <span class="kw">deriving</span> (<span class="kw">Show</span>, <span class="kw">Eq</span>)
+
+<span class="kw">data</span> <span class="dt">CartesianPoint</span> <span class="fu">=</span> <span class="dt">Point</span> {<span class="ot">x ::</span> <span class="dt">Double</span>,<span class="ot"> y ::</span> <span class="dt">Double</span>}
+                      <span class="kw">deriving</span> (<span class="kw">Show</span>)
+
+<span class="ot">directionOf ::</span> <span class="dt">CartesianPoint</span> <span class="co">-- ^ Point A</span>
+            <span class="ot">-&gt;</span> <span class="dt">CartesianPoint</span> <span class="co">-- ^ Vertex</span>
+            <span class="ot">-&gt;</span> <span class="dt">CartesianPoint</span> <span class="co">-- ^ Point B</span>
+            <span class="ot">-&gt;</span> <span class="dt">Direction</span>
+directionOf a v b <span class="fu">|</span> sign <span class="fu">&gt;</span> <span class="dv">0</span>  <span class="fu">=</span> <span class="dt">RIGHT</span>
+                  <span class="fu">|</span> sign <span class="fu">&lt;</span> <span class="dv">0</span>  <span class="fu">=</span> <span class="dt">LEFT</span>
+                  <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> <span class="dt">STRAIGHT</span>
+            <span class="kw">where</span> sign <span class="fu">=</span> (x v <span class="fu">-</span> x a) <span class="fu">*</span> (y b <span class="fu">-</span> y a) <span class="fu">-</span> (y v <span class="fu">-</span> y a) <span class="fu">*</span> (x b <span class="fu">-</span> x a)</code></pre>
+<p>I original struggled with this one, I had a partial solution that kinda worked halfway it wasn’t till I read the Wikipedia page for <a href="http://en.wikipedia.org/wiki/Graham_scan" title="Graham Scan on Wikipedia">Graham Scan</a> that I saw this specific equation.</p>
+<h2 id="exercise-11">Exercise 11</h2>
+<blockquote>
+<p>Define a function that takes a list of two-dimensional points and computes the direction of each successive triple. Given a list of points [a,b,c,d,e], it should begin by computing the turn made by [a,b,c], then the turn made by [b,c,d], then [c,d,e]. Your function should return a list of Direction.</p>
+</blockquote>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">directionsOf (a <span class="fu">:</span> v <span class="fu">:</span> b <span class="fu">:</span> ps) <span class="fu">=</span> directionOf a v b <span class="fu">:</span> directionsOf(v<span class="fu">:</span>b<span class="fu">:</span>ps)
+directionsOf _                <span class="fu">=</span> []</code></pre>
+<p>This one was pretty simple given that <code>directionOf</code> works correctly.</p>
+<h2 id="the-boss---exercise-12">The Boss - Exercise 12</h2>
+<p>Ugh WTF again. Anyway lets walk though the algorithm that Wikipedia lists.</p>
+<ol style="list-style-type: decimal">
+<li>Find the point with the lowest y-coordinate. Call this point P.</li>
+<li>Order the set of points in increasing order of the angle they and the point P make with the x-axis.</li>
+<li>Consider each of the sorted points in sequence. Check if it is a Left or a Right turn. If it is a right turn, then the second-to-last point is not part of the convex hull and should be removed from consideration.</li>
+<li>Continue until the point P is returned.</li>
+</ol>
+<p>So how did I do this. First step. I sorted all of the points by their y value. The head of this list will be P.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sortByY xs <span class="fu">=</span> sortBy lowestY xs
+             <span class="kw">where</span> lowestY a b <span class="fu">=</span> <span class="fu">compare</span> (y a, x a) (y b, x b)</code></pre>
+<p>Step two, the first item in the sorted set is P, and now I need to sort the set by their angle.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sortByAngle ps <span class="fu">=</span> bottomLeft <span class="fu">:</span> sortBy (compareAngles bottomLeft) (<span class="fu">tail</span> (sortedPs))
+    <span class="kw">where</span> sortedPs       <span class="fu">=</span> sortByY ps
+           bottomLeft     <span class="fu">=</span> <span class="fu">head</span> (sortedPs)
+           pointAngle a b <span class="fu">=</span> (x b <span class="fu">-</span> x a) <span class="fu">/</span> (y b <span class="fu">-</span> y a)
+           compareAngles  <span class="fu">=</span> comparing <span class="fu">.</span> pointAngle</code></pre>
+<p>Finally, given that I have my set of sorted points now, I can check if it is a left or right turn and drop the middle point.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">grahamScan ::</span> [<span class="dt">CartesianPoint</span>] <span class="ot">-&gt;</span> [<span class="dt">CartesianPoint</span>]
+grahamScan ps <span class="fu">=</span> scan (sortByAngle ps)
+    <span class="kw">where</span> scan (a<span class="fu">:</span>v<span class="fu">:</span>b<span class="fu">:</span>xs) <span class="fu">=</span> <span class="kw">if</span> directionOf a v b <span class="fu">==</span> <span class="dt">RIGHT</span>
+                             <span class="kw">then</span> a <span class="fu">:</span> scan(b<span class="fu">:</span>xs)
+                             <span class="kw">else</span> a <span class="fu">:</span> scan(v<span class="fu">:</span>b<span class="fu">:</span>xs)
+           scan [a, b]     <span class="fu">=</span> [a, b]
+           scan _          <span class="fu">=</span> []</code></pre>
+<p>The decomposition and recomposition of the list here is pretty cool.</p>
+<p>And this gets me past the boss. I had to do a bit of grinding before I could beat him, but I am really super happy with my result.</p>
+<!-- == Links ====================================================================================================== -->
+
+
+
+
+
+
+          <footer>
+            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/real-world-haskell.html">real-world-haskell</a>, <a href="../posts/tag/functional.html">functional</a></p>
+            <p class="signoff"><i class="icon-pencil"></i> Ben Doerr</p>
+
+            <p class="social">
+              <div data-href="/posts/2012-06-21-graham-scan.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+              <a data-url="/posts/2012-06-21-graham-scan.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </p>
+
+            <div id="comments" class="comments">
+              <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'bendoerrme';
+                    var disqus_identifier = '/posts/2012-06-21-graham-scan.html';
+                    var disqus_title = 'Chapter 3 Boss';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </footer>
+        </article>
+
+
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- = Site Footer ==================================================== -->
+    <!-- ================================================================== -->
+    <footer>
+      <div class="container">
+
+        <div class="row visible-desktop">
+          <section id="information-desktop" class="span8">
+            <h4><i class="icon-legal"></i> Information &amp; Copyright</h4>
+            <p>Powered by Hakyll, Bootstrap, Github, and Hover. Syntax
+            highlighting by Pandoc. Icons by Font Awesome. Tagline inspired by
+            Penny Arcade.</p>
+
+            <p>
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+                <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png"></img>
+              </a>
+              Except where otherwise noted, content on
+              <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">bendoerr.me</span>
+              by
+              <a xmlns:cc="http://creativecommons.org/ns#" href="http://bendoerr.me" property="cc:attributionName" rel="cc:attributionURL">
+                Benjamin R. Doerr
+              </a>
+              is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+                Creative Commons Attribution-ShareAlike 3.0 Unported License
+              </a>.
+            </p>
+
+            <p><a href="https://github.com/bendoerr/bendoerr.me"><i class="icon-list-alt"></i> Get the source</a></p>
+          </section>
+
+          <section id="social-follow" class="span4">
+            <h4><i class="icon-globe"></i> Around the web</h4>
+            <ul class="unstyled">
+              <li>
+                <a class="btn btn-inverse btn-large" href="#">
+                  <i class="icon-github"></i> Github
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-inverse btn-large" href="#">
+                  <i class="icon-twitter"></i> Twitter
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-inverse btn-large" href="#">
+                  <i class="icon-google-plus"></i> Google+
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="row hidden-desktop">
+          <section id="information-phone" class="span12">
+            <h4><i class="icon-legal"></i> Information &amp; Copyright</h4>
+            <p>Powered by Hakyll, Bootstrap, Github, and Hover. Syntax
+            highlighting by Pandoc. Icons by Font Awesome. Tagline inspired by
+            Penny Arcade.</p>
+
+            <p>
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+                <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png"></img>
+              </a>
+              Except where otherwise noted, content on
+              <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">bendoerr.me</span>
+              by
+              <a xmlns:cc="http://creativecommons.org/ns#" href="http://bendoerr.me" property="cc:attributionName" rel="cc:attributionURL">
+                Benjamin R. Doerr
+              </a>
+              is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+                Creative Commons Attribution-ShareAlike 3.0 Unported License
+              </a>.
+            </p>
+
+            <p><a href="https://github.com/bendoerr/bendoerr.me"><i class="icon-list-alt"></i> Get the source</a></p>
+          </section>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Google+ Async Share Script -->
+    <script type="text/javascript">
+      (function () {
+       var po = document.createElement('script');
+       po.type = 'text/javascript';
+       po.async = true;
+       po.src = 'https://apis.google.com/js/plusone.js';
+       var s = document.getElementsByTagName('script')[0];
+       s.parentNode.insertBefore(po, s);
+       })();
+     </script>
+
+     <!-- Twitter Async Share Script -->
+     <script>
+       !function (d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (!d.getElementById(id)) {
+           js = d.createElement(s);
+           js.id = id;
+           js.src = "https://platform.twitter.com/widgets.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }
+       }(document, "script", "twitter-wjs");
+     </script>
+
+    <!-- Disqus Comment Counts -->
+    <script type="text/javascript">
+      var disqus_developer = 1; // developer mode is on
+      var disqus_shortname = 'bendoerrme';
+      var disqus_url = 'http://bendoerr.me/this-posts-url';
+      var disqus_identifier = 'this-posts-url';
+      var disqus_title = 'Post Title';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+       var s = document.createElement('script'); s.async = true;
+       s.type = 'text/javascript';
+       s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    </script>
+  </body>
+</html>

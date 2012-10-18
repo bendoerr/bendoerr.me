@@ -8,11 +8,11 @@
     <title>bendoerr.me</title>
 
 
-    <link href="../../css/bootstrap.css" rel="stylesheet"></link>
-    <link href="../../css/responsive.css" rel="stylesheet">
-    <link href="../../css/site.css" rel="stylesheet">
-    <link href="../../css/site-responsive.css" rel="stylesheet">
-    <link href="../../css/syntax.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet"></link>
+    <link href="../css/responsive.css" rel="stylesheet">
+    <link href="../css/site.css" rel="stylesheet">
+    <link href="../css/site-responsive.css" rel="stylesheet">
+    <link href="../css/syntax.css" rel="stylesheet">
   </head>
 
   <body>
@@ -24,10 +24,10 @@
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-            <li><a href="../../index.html">Home</a></li>
-            <li><a href="../../about.html">About</a></li>
-            <li><a href="../../posts.html">Blog</a></li>
-            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../posts.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -47,56 +47,84 @@
 
     <div class="container">
 
-      <div id="page-body" class="row">
-
-  <div id="page-content" class="span12 groovy">
-      <h2 class="page-title">Posts from groovy</h2>
-      <div class="row-fluid">
-          
+      
         <!-- ============================================================== -->
-        <!-- = Article Short ============================================== -->
+        <!-- = Article Post =============================================== -->
         <!-- ============================================================== -->
-        <article class="span6" style="margin-left:15px;">
+        <article>
           <header>
-            <h1><a href="../../posts/2012-06-19-real-world-haskell-ch1.html">Starting the Journey</a></h1>
+            <h1><a href="../posts/2012-06-19-real-world-haskell-ch1.html">Starting the Journey</a></h1>
+            <p class="category pull-right"><span class="label label-category Haskell"><a href="../posts/category/Haskell.html">Haskell</a></span></p>
             <p><i class="icon-calendar"></i> <time datatime="2012-06-19" pubdate>Tuesday, June 19, 2012</time></p>
-            <p><span class="label label-category Haskell"><a href="../../posts/category/Haskell.html">Haskell</a></span>
-            <i class="icon-tags"></i> <a href="../../posts/tag/real-world-haskell.html">real-world-haskell</a>, <a href="../../posts/tag/functional.html">functional</a>, <a href="../../posts/tag/groovy.html">groovy</a></p>
-           </header>
+          </header>
 
           <p>One of the greatest things that have come out of learning and working everyday in a <a href="http://groovy.codehaus.org/" title="Groovy - A dynamic language for the Java platform">Java like language</a> that not just supports lambdas but makes them a way of life, is that before you know it you are getting really curious about this <a href="http://groovy.codehaus.org/Functional+Programming+with+Groovy" title="Functional Programming with Groovy">functional programming</a> thing. At first my curiosity lead me to <a href="http://www.scala-lang.org/" title="Scala Progamming Language">Scala</a>, and why not, it’s been totally hyped, compiles to JVM bytecode, and has some awesome <a href="http://akka.io/" title="Akka is pretty cool.">things</a> going on. But, boy was I unprepared for all the concepts that Scala required me to understand just to read it’s standard libraries. I gave Scala the <a href="http://liftweb.net/" title="Lift Web Framework">old college try</a> but didn’t come away with much other than this burning question of “What the f* are Monads?”, and I decided I needed to learn functional concepts in a more clean room environment rather than one that merges them with the OO world.</p>
+<!--MORE-->
+
+<h1 id="so-why-haskell">So why Haskell?</h1>
+<p>The answer is pretty simple, but I’ll get to that in a minute. First, I’m sure any of the following would have been fine: <a href="http://en.wikipedia.org/wiki/Erlang_(programming_language)" title="Erlang (programming language)">Erlang</a>, <a href="http://en.wikipedia.org/wiki/Common_Lisp" title="Common Lisp">Lisp</a>, <a href="http://en.wikipedia.org/wiki/Scheme_(programming_language)" title="Scheme (programming language)">Scheme</a>, <a href="http://en.wikipedia.org/wiki/Standard_ML" title="Standard ML">Standard ML</a>, <a href="http://en.wikipedia.org/wiki/F_Sharp_(programming_language)" title="F# (programming language)">F#</a>, <a href="http://en.wikipedia.org/wiki/Clojure" title="Clojure">Clojure</a>, or the many other programming languages that fall into the functional paradigm. However, I had to pick one, so I did what any other 21st century biped would do, I looked them up on Wikipedia. Right away I ruled out Lisp and Closure on purely aesthetic reasons, namely the <del>excessive parenthesis</del> <ins><a href="http://xkcd.com/297/" title="Lisp Cycles">elegant weapons</a></ins> that were required. It all really boiled down to cover judgements. I really liked the way Haskell looked, and the words <em>lazy</em> and <em>pure</em> also fit well with my world view. So there it is, I choose to learn Haskell because I am <em>lazy</em> and was looking for a <em>pure</em>ly functional language to learn that didn’t feel <a href="http://yz.mit.edu/wp/true-scala-complexity/" title="Scala Intimidates Me">intimidating</a>.</p>
+<p>Once all this was decided I went <a href="http://shop.oreilly.com/product/9780596514983.do" title="Real World Haskell">out</a> and picked up copy of <a href="http://book.realworldhaskell.org/" title="Read Real World Haskell Online">Real World Haskell</a> since it looked good and O’Reilly had a sale going on.</p>
+<h1 id="the-first-few-chapters">The First few Chapters</h1>
+<h2 id="preface">Preface</h2>
+<p>Got me excited, ready to rock and learn this thing.</p>
+<h2 id="chapter-1">Chapter 1</h2>
+<p>Haskell is one of those languages that have more than one compiler for it, but the de facto standard is the Glasgow Haskell Compiler (GHC). Even better there was something called the <a href="http://www.haskell.org/platform/" title="Haskell Platform">Haskell Platform</a> that bootstrap all the cool Haskell things that I would need.</p>
+<p><strong>GHCi</strong> is introduced right away, it is a REPL which EVERY language needs! Shame on you Java. The basics of GHCi and some simple Haskell syntax seem intuitive enough. The list ‘cons’ makes sense since I picked that up from Scala. The type system really started to get me excited, the fact that the compiler is able to infer types makes life awesome. And is a feature that I really enjoy in other languages. Shame on you Java. Some quick exercises at the end of the chapter get you a little more familiar with the basic function call structure.</p>
+<p>Even more excited now, another chapter must be consumed.</p>
+<h2 id="chapter-2">Chapter 2</h2>
+<p>The first part of this chapter is an introduction to Haskell’s type system. There are three properties of Haskell’s type system that make it unique: types are <em>static</em>, types are <em>strong</em> and they can be <em>infered</em>. Having strong types means gone are the days of <code>ClassCastException</code>s and even <code>NullPointerException</code>s. Haskell also will never automatically cast one type to another so no <code>Int -&gt; Double</code> coercion. Static typing means that the compiler knows not the runtime, the compiler knows the type of every value. This is super cool since a lot of code that I write in Groovy or even Java that compiles and fails at runtime would never pass the compiler in Haskell.</p>
+<p>This type system is super refreshing to see since I have been working with a language that not only has fairly weak types but allows duck typing as well.</p>
+<p>The second part of the chapter introduces some of the basic concepts in Haskell. Function application which is parentheses optional and without commas. Some common complex data types such as lists and tuples. Passing functions as arguments is the entire reason I am here. And more.</p>
+<p>Chapter 2 presents just enough to quench the thirst for the night.</p>
+<!-- == Links ====================================================================================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           <footer>
-            <a href="../../posts/2012-06-19-real-world-haskell-ch1.html" class="btn btn-primary btn-small">Read More</a>
+            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/real-world-haskell.html">real-world-haskell</a>, <a href="../posts/tag/functional.html">functional</a>, <a href="../posts/tag/groovy.html">groovy</a></p>
+            <p class="signoff"><i class="icon-pencil"></i> Ben Doerr</p>
+
+            <p class="social">
+              <div data-href="/posts/2012-06-19-real-world-haskell-ch1.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+              <a data-url="/posts/2012-06-19-real-world-haskell-ch1.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </p>
+
+            <div id="comments" class="comments">
+              <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'bendoerrme';
+                    var disqus_identifier = '/posts/2012-06-19-real-world-haskell-ch1.html';
+                    var disqus_title = 'Starting the Journey';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
           </footer>
         </article>
-
-
-        <!-- ============================================================== -->
-        <!-- = Article Short ============================================== -->
-        <!-- ============================================================== -->
-        <article class="span6" style="margin-left:15px;">
-          <header>
-            <h1><a href="../../posts/2011-06-20-groovy-inject.html">Groovy's Inject</a></h1>
-            <p><i class="icon-calendar"></i> <time datatime="2011-06-20" pubdate>Monday, June 20, 2011</time></p>
-            <p><span class="label label-category Java"><a href="../../posts/category/Java.html">Java</a></span>
-            <i class="icon-tags"></i> <a href="../../posts/tag/groovy.html">groovy</a>, <a href="../../posts/tag/functional.html">functional</a></p>
-           </header>
-
-          <p>When I started getting into functional programming I relaized that Groovy has some features which could be considered functional or higher-order functions. I commonly use methods like <code>findAll (filter)</code> and <code>collect (map)</code>. As I was reading <strong>Beginning Scala</strong> by <em>David Pollack</em> I came across <code>fold</code> which I had never used before. Groovy calls this <code>inject</code>. <code>inject</code> allows us to walk though a data structure calling a function on each node, the result of that function is then passed to the same function being called on the next node.</p>
-
-
-          <footer>
-            <a href="../../posts/2011-06-20-groovy-inject.html" class="btn btn-primary btn-small">Read More</a>
-          </footer>
-        </article>
-
-
-      </div>
-  </div>
-
-</div>
 
 
     </div>
