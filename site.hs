@@ -35,6 +35,9 @@ tagsPath = parseGlob "posts/tag/*"
 catsPath :: Pattern a
 catsPath = parseGlob "posts/category/*"
 
+pagesPath :: Pattern a
+pagesPath = parseGlob "pages/**"
+
 main :: IO ()
 main = hakyll $ do
     -- Copy Images, JavaScript and Fonts
@@ -64,6 +67,9 @@ main = hakyll $ do
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
+
+    -- Random Stuff
+    pages
 
     -- End
     return ()
@@ -96,6 +102,11 @@ blogPosts ::  RulesM (Pattern (Page String))
 blogPosts = match postsPath $ do
                               route $ setExtension ".html"
                               compile postCompiler
+
+pages :: RulesM (Pattern (Page String))
+pages = match pagesPath $ do
+                          route $ setExtension ".html"
+                          compile plainPageCompiler
 
 plainPageCompiler ::  Compiler Resource (Page String)
 plainPageCompiler =  pageCompiler
