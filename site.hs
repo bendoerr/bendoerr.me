@@ -109,7 +109,8 @@ pages = match pagesPath $ do
                           compile plainPageCompiler
 
 plainPageCompiler ::  Compiler Resource (Page String)
-plainPageCompiler =  pageCompiler
+plainPageCompiler =   getResourceString
+                  >>> arr readPage
                   >>> arr (copyBodyToField "content")
                   >>> applyTemplateCompiler "templates/page.html"
                   >>> applyTemplateCompiler "templates/default.html"
