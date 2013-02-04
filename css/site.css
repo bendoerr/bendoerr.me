@@ -142,3 +142,17 @@ p .small {
 .label-category {
   background-color: #0f5ca1;
 }
+.crop {
+  width: 130px;
+  height: 130px;
+  background-position: center center;
+}
+.well {
+  padding: 14px;
+}
+.well  > .thumbnails {
+  margin-left: -13px;
+}
+.well  > .thumbnails  > li {
+  margin-left: 13px;
+}

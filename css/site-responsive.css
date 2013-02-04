@@ -1,3 +1,16 @@
+@media (min-width: 1200px) {
+  .crop {
+    width: 159px;
+    height: 159px;
+    background-position: center center;
+  }
+  .well > .thumbnails {
+    margin-left: -21px;
+  }
+  .well > .thumbnails  > li {
+    margin-left: 21px;
+  }
+}
 @media (max-width: 979px) {
   .site-header {
     margin-top: -35px;
@@ -14,5 +27,12 @@
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 10px;
+  }
+}
+@media (max-width: 979px) and (min-width: 768px) {
+  .crop {
+    width: 94px;
+    height: 94px;
+    background-position: center center;
   }
 }
