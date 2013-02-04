@@ -1,3 +1,22 @@
+@import "variables.less";
+
+@media (min-width: 1200px) {
+  .crop {
+    @cropTo: (@gridColumnWidth1200 * 2) + (@gridGutterWidth1200 / 2) + 4;
+    width: @cropTo;
+    height: @cropTo;
+    background-position: center center;
+  }
+
+  .well > .thumbnails {
+    margin-left: -21px;
+
+    & > li {
+      margin-left: 21px;
+    }
+  }
+}
+
 @media (max-width: 979px) { 
   .site-header {
     margin-top: -35px;
@@ -17,5 +36,14 @@
     margin-right: -20px;
     padding-left: 10px;
 
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+  .crop {
+    @cropTo: (@gridColumnWidth768 * 2) + (@gridGutterWidth768 / 2);
+    width: @cropTo;
+    height: @cropTo;
+    background-position: center center;
   }
 }

@@ -36,12 +36,12 @@ catsPath :: Pattern a
 catsPath = parseGlob "posts/category/*"
 
 pagesPath :: Pattern a
-pagesPath = parseGlob "pages/**"
+pagesPath = parseGlob "pages/**.html"
 
 main :: IO ()
 main = hakyll $ do
     -- Copy Images, JavaScript and Fonts
-    copyAll [cssPath, imgPath, jsPath, "CNAME"]
+    copyAll [cssPath, imgPath, jsPath, "CNAME", parseGlob "images/*", parseGlob "pages/**.jpg"]
     copyTo fontFPath fontTPath
 
     -- Create CSS from LESS

@@ -138,3 +138,22 @@ p .small {
 .label-category {
     background-color: @blue;
 }
+
+.crop {
+    @cropTo: (@gridColumnWidth * 2) + (@gridGutterWidth / 2);
+    width: @cropTo;
+    height: @cropTo;
+    background-position: center center;
+}
+
+.well {
+    padding: 14px;
+
+    & > .thumbnails {
+        margin-left: -13px;
+
+        & > li {
+          margin-left: 13px;
+        }
+    }
+}
