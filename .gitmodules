@@ -4,3 +4,6 @@
 [submodule "Font-Awesome"]
 	path = Font-Awesome
 	url = git://github.com/FortAwesome/Font-Awesome.git
+[submodule "lightbox2"]
+	path = lightbox2
+	url = git@github.com:bendoerr/lightbox2.git
