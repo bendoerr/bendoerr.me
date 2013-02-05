@@ -38,10 +38,15 @@ catsPath = parseGlob "posts/category/*"
 pagesPath :: Pattern a
 pagesPath = parseGlob "pages/**.html"
 
+pagesPhotosPath :: Pattern a
+pagesPhotosPath = parseGlob "pages/**.jpg"
+
 main :: IO ()
 main = hakyll $ do
     -- Copy Images, JavaScript and Fonts
-    copyAll [cssPath, imgPath, jsPath, "CNAME", parseGlob "images/*", parseGlob "pages/**.jpg"]
+    copyAll [cssPath, imgPath, jsPath, "CNAME", pagesPhotosPath]
+
+    -- Copy across Font Awesome
     copyTo fontFPath fontTPath
 
     -- Create CSS from LESS
@@ -49,6 +54,16 @@ main = hakyll $ do
     bootstrap "responsive"
     lesscss
 
+    -- Copy across Lightbox2
+    copyTo "lightbox2/images/close.png" imgPath
+    copyTo "lightbox2/images/next.png" imgPath
+    copyTo "lightbox2/images/prev.png" imgPath
+    copyTo "lightbox2/images/loading.gif" imgPath
+    copyTo "lightbox2/js/lightbox.js" jsPath
+    copyTo "lightbox2/js/jquery-1.7.2.min.js" jsPath
+    copyTo "lightbox2/css/lightbox.css" cssPath
+
+    -- Build blog posts
     blogPosts
 
     -- Build up index/posts pages.
