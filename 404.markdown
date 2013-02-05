@@ -5,7 +5,7 @@ If you followed a link and got here, I am truly sorry. I screwed up and
 moved something. It's best that you checkout the [blog index][blog] to find what
 you are looking for. Or maybe one of the following will help you find your way.
 
-[blog]: "http://bendoerr.me/blog.html" "Blog Index"
+[blog]: http://bendoerr.me/posts.html (Blog Index)
 
 Popular Categories
 -----
@@ -33,7 +33,7 @@ Popular Categories
     <a href="/posts/category/java.html" class="btn btn-primary">JVM Languages</a>
   </div>
   <div class="span3">
-    <img src="./img/Gardening.png" class="hidden-phone" alt="Leaf and Question Logo">
+    <img src="/img/Gardening.png" class="hidden-phone" alt="Leaf and Question Logo">
     <h3><i class="icon-leaf"></i> Gardening</h3>
     <p>My non-technical passion is Gardening. I started keeping a Garden when I
     moved to Virgina after college. If you haven't succeeded with a garden

@@ -78,7 +78,7 @@ main = hakyll $ do
 
     match "404.*" $ do
                     route $ setExtension ".html"
-                    compile plainPageCompiler
+                    compile miscCompiler
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -143,6 +143,14 @@ postCompiler =  pageCompiler
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
+
+miscCompiler :: Compiler Resource (Page String)
+miscCompiler =  pageCompiler
+            >>> arr (copyBodyToField "content")
+            >>> arr (renderDateField "date" "%A, %B %e, %Y" "")
+            >>> arr (renderDateField "xmldate" "%F" "")
+            >>> applyTemplateCompiler "templates/page.html"
+            >>> applyTemplateCompiler "templates/default.html"
 
 copyRule ::  RulesM (Pattern CopyFile)
 copyRule = do
