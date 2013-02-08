@@ -1,5 +1,9 @@
 _cache
 _site
 deploy
-updatePhotos.groovy.tokens
+build
+.gradle
+.DS_STORE
+.autophotos.*
 pages/to/my/family/with/love/thumbs
+autophotos.jar

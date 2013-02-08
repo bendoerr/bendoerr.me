@@ -1,0 +1,49 @@
+apply plugin: 'groovy'
+
+def name        = 'autophotos'
+def description = 'Checks Dropbox for changes to my shared photos, then ' +
+                  'updates the corresponding photos page and deploys the site.'
+
+def group       = 'me.bendoerr.website'
+def version     = '0'
+
+repositories {
+    mavenCentral()
+    maven { url '/Users/bdoerr/.m2/repository/' }
+}
+
+dependencies {
+    groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.0.5'
+
+    compile 'org.quartz-scheduler:quartz:2.1.6',
+            'org.slf4j:slf4j-simple:1.7.2',
+            'com.dropbox.sdk:dropbox-client:1.5.3'
+
+    runtime 'commons-cli:commons-cli:1.2'
+}
+
+// Pull source from the root rather than a nested src dir.
+sourceSets.main.groovy {
+    srcDir projectDir
+    include '*.groovy'
+}
+
+// Build a nice simple fat jar.
+jar {
+    destinationDir = projectDir as File
+
+    from {
+        // Fatten things up.
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    // Exclude some nasty stuff.
+    exclude 'META-INF/*.SF',
+            'META-INF/*.DSA',
+            'META-INF/*.RSA'
+
+    manifest {
+        // Set the main class.
+        attributes 'Main-Class': 'me.bendoerr.website.autophotos.Main'
+    }
+}
