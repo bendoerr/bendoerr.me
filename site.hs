@@ -21,7 +21,7 @@ jsPath :: Pattern a
 jsPath = parseGlob "js/*"
 
 fontFPath :: Pattern a
-fontFPath = parseGlob "Font-Awesome/font/*"
+fontFPath = parseGlob "vendor/Font-Awesome/font/*"
 
 fontTPath :: Pattern a
 fontTPath = parseGlob "font/*"
@@ -55,13 +55,13 @@ main = hakyll $ do
     lesscss
 
     -- Copy across Lightbox2
-    copyTo "lightbox2/images/close.png" imgPath
-    copyTo "lightbox2/images/next.png" imgPath
-    copyTo "lightbox2/images/prev.png" imgPath
-    copyTo "lightbox2/images/loading.gif" imgPath
-    copyTo "lightbox2/js/lightbox.js" jsPath
-    copyTo "lightbox2/js/jquery-1.7.2.min.js" jsPath
-    copyTo "lightbox2/css/lightbox.css" cssPath
+    copyTo "vendor/lightbox2/images/close.png" imgPath
+    copyTo "vendor/lightbox2/images/next.png" imgPath
+    copyTo "vendor/lightbox2/images/prev.png" imgPath
+    copyTo "vendor/lightbox2/images/loading.gif" imgPath
+    copyTo "vendor/lightbox2/js/lightbox.js" jsPath
+    copyTo "vendor/lightbox2/js/jquery-1.7.2.min.js" jsPath
+    copyTo "vendor/lightbox2/css/lightbox.css" cssPath
 
     -- Build blog posts
     blogPosts
@@ -105,7 +105,7 @@ bootstrap ::  String -> RulesM (Pattern String)
 bootstrap css = match (bsPath css) $ do
         route $ bsRoute css
         compile lessc
-    where bsPath c = parseGlob $ "bootstrap/less/" ++ c ++ ".less"
+    where bsPath c = parseGlob $ "vendor/bootstrap/less/" ++ c ++ ".less"
           bsRoute c = constRoute $ toFilePath (fromCapture cssPath (c ++ ".css"))
 
 lesscss ::  RulesM (Pattern String)
@@ -222,4 +222,4 @@ renderTeaser field =  arr (copyBodyToField field)
         noTeaser (x : xs) = x : noTeaser xs
 
 lessc ::  Compiler Resource String
-lessc = getResourceString >>> unixFilter "lessc" ["--include-path=bootstrap/less", "-"]
+lessc = getResourceString >>> unixFilter "lessc" ["--include-path=vendor/bootstrap/less", "-"]

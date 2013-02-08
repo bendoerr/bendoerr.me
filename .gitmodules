@@ -1,9 +1,9 @@
-[submodule "bootstrap"]
-	path = bootstrap
-	url = git://github.com/twitter/bootstrap.git
-[submodule "Font-Awesome"]
-	path = Font-Awesome
+[submodule "vendor/bootstrap"]
+	path = vendor/bootstrap
+	url = git@github.com:bendoerr/bootstrap.git
+[submodule "vendor/Font-Awesome"]
+	path = vendor/Font-Awesome
 	url = git://github.com/FortAwesome/Font-Awesome.git
-[submodule "lightbox2"]
-	path = lightbox2
+[submodule "vendor/lightbox2"]
+	path = vendor/lightbox2
 	url = git@github.com:bendoerr/lightbox2.git
