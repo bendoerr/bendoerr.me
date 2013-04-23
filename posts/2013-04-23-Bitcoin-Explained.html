@@ -8,12 +8,12 @@
     <title>bendoerr.me</title>
 
 
-    <link href="./css/bootstrap.css" rel="stylesheet"></link>
-    <link href="./css/responsive.css" rel="stylesheet">
-    <link href="./css/site.css" rel="stylesheet">
-    <link href="./css/site-responsive.css" rel="stylesheet">
-    <link href="./css/syntax.css" rel="stylesheet">
-    <link href="./css/lightbox.css" rel="stylesheet"></link>
+    <link href="../css/bootstrap.css" rel="stylesheet"></link>
+    <link href="../css/responsive.css" rel="stylesheet">
+    <link href="../css/site.css" rel="stylesheet">
+    <link href="../css/site-responsive.css" rel="stylesheet">
+    <link href="../css/syntax.css" rel="stylesheet">
+    <link href="../css/lightbox.css" rel="stylesheet"></link>
   </head>
 
   <body>
@@ -25,10 +25,10 @@
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./posts.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../posts.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -49,50 +49,13 @@
     <div class="container">
 
       
-      <!-- ================================================================ -->
-      <!-- = Category Promotion =========================================== -->
-      <!-- ================================================================ -->
-      <section id="page-promo" class="row">
-        <div class="span3 offset1">
-          <img src="./img/HaskellStyleLogo.png" class="hidden-phone" alt="Haskell Stylized Logo">
-          <h3><i class="icon-bullhorn"></i> Learning Haskell</h3>
-          <p>I started learning Haskell at the start of Summer '12 since I failed
-          miserable to understand Scala earlier. Haskell has been a great adventure
-          which I've taken at a leisurely pace.</p>
-          <p>Follow along as I learn more about Monads and maybe even Arrows.</p>
-          <a href="./posts/category/haskell.html" class="btn btn-primary">Haskell Category</a>
-        </div>
-        <div class="span3">
-          <img src="./img/EverydayJava.png" class="hidden-phone" alt="Java Coffee Stained Logo">
-          <h3><i class="icon-tasks"></i> Everyday Java</h3>
-          <p>Most days I can be found deep in some JVM based code, from Groovy and
-          Java, sometimes Scala and maybe one day Closure. I've been crafting on the
-          JVM since I began programming.</p>
-          <p>I'll share the tips and tricks that I discover everyday.</p>
-          <a href="./posts/category/java.html" class="btn btn-primary">JVM Languages</a>
-        </div>
-        <div class="span3">
-          <img src="./img/Gardening.png" class="hidden-phone" alt="Leaf and Question Logo">
-          <h3><i class="icon-leaf"></i> Gardening</h3>
-          <p>My non-technical passion is Gardening. I started keeping a Garden when I
-          moved to Virgina after college. If you haven't succeeded with a garden
-          before, don't worry nighter have I.</p>
-          <p>Watch as I fail, fail some more, and maybe succeed growing something.</p>
-          <a href="./posts/category/gardening.html" class="btn btn-primary">Garden Knowledge</a>
-        </div>
-      </section>
-
-      <div id="page-body" class="row">
-
-        <div id="page-content" class="span9">
-          
-        <!-- ============================================================ -->
-        <!-- = Article Item ============================================= -->
-        <!-- ============================================================ -->
+        <!-- ============================================================== -->
+        <!-- = Article Post =============================================== -->
+        <!-- ============================================================== -->
         <article>
           <header>
-            <h1><a href="./posts/2013-04-23-Bitcoin-Explained.html">Bitcoin Explained</a></h1>
-            <p class="category pull-right"><span class="label label-category Other"><a href="./posts/category/Other.html">Other</a></span></p>
+            <h1><a href="../posts/2013-04-23-Bitcoin-Explained.html">Bitcoin Explained</a></h1>
+            <p class="category pull-right"><span class="label label-category Other"><a href="../posts/category/Other.html">Other</a></span></p>
             <p><i class="icon-calendar"></i> <time datatime="2013-04-23" pubdate>Tuesday, April 23, 2013</time></p>
           </header>
 
@@ -155,50 +118,33 @@
 <p>While I see a few, might I say, glaring issues with the economics of Bitcoin. The technical thingamajigairy is super cool. I don’t think, personal sentiment here, that Bitcoin will survive as a player in the longterm digital currency battles, it’s progeny will somehow solve many of the basic issues that we solved out here in the physical world, plus more. Will that mean there will have to be some sort of centralized authority? And if so how do we establish trust in that authority without the backing of a government? Are just some of the questions that will have to be answered.</p>
 
           <footer>
-            <p class="tags pull-right"><i class="icon-tags"></i> <a href="./posts/tag/bitcoin.html">bitcoin</a></p>
+            <p class="tags pull-right"><i class="icon-tags"></i> <a href="../posts/tag/bitcoin.html">bitcoin</a></p>
             <p class="signoff"><i class="icon-pencil"></i> Ben Doerr</p>
-            <p class="comment-count">
-              <i class="icon-comments-alt"></i>
-              <a href="./posts/2013-04-23-Bitcoin-Explained.html#comments"></a>
-              <a href="./posts/2013-04-23-Bitcoin-Explained.html#disqus_thread" data-disqus-identifier="/posts/2013-04-23-Bitcoin-Explained.html"></a>
-            </p>
 
             <p class="social">
               <div data-href="/posts/2013-04-23-Bitcoin-Explained.html" class="g-plus" data-action="share" data-annotation="bubble"></div>
 
               <a data-url="/posts/2013-04-23-Bitcoin-Explained.html" data-text="Post Title" data-via="bendoerr" href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
             </p>
+
+            <div id="comments" class="comments">
+              <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'bendoerrme';
+                    var disqus_identifier = '/posts/2013-04-23-Bitcoin-Explained.html';
+                    var disqus_title = 'Bitcoin Explained';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
           </footer>
         </article>
-
-
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- = Sidebar ==================================================== -->
-        <!-- ============================================================== -->
-        <div id="page-sidebar" class="span3">
-          <section id="about">
-            <h2>Who are you?</h2>
-            <img src="http://www.gravatar.com/avatar/9114304b96acd7b2bd88275eaccdbdbf?s=140" class="img-circle" style="margin-left: 20px;margin-bottom: 15px;" alt="Picture of my Beautiful Self">
-            <p>I am a self titled &quot;Software Craftsman&quot; which basically means &quot;I
-            care&quot;.  Professionally I've done work on emissions tracking and
-            trading systems for both the US and Australian governments. Now I
-            am working working on solving tough integration problems in
-            healthcare.</p>
-            <p>I am Ben Doerr.</p>
-            <a href="./about.html" class="btn btn-mini btn-inverse">Find out more</a>
-          </section>
-          <!--<section id="recent_posts">                    -->
-          <!--<h2>Show me more!</h2>                         -->
-          <!--<ul>                                           -->
-          <!--  <li><a href="#">This was a post</a></li>     -->
-          <!--  <li><a href="#">About this and that.</a></li>-->
-          <!--</ul>                                          -->
-          <!--</section>                                     -->
-        </div>
-
-    </div>
 
 
     </div>
@@ -289,9 +235,9 @@
 
 
     <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
-    <script src="./js/jquery-1.7.2.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/lightbox.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/lightbox.js"></script>
 
     <!-- Google+ Async Share Script -->
     <script type="text/javascript">

@@ -29,20 +29,20 @@ body {
   background-image: url("../img/sketch.png");
   padding-top: 36px;
 }
-body  > footer {
+body > footer {
   background-image: url("../img/footer-bg.png");
   color: #e6e1da;
   min-height: 182px;
   padding-top: 25px;
   margin-top: 45px;
 }
-body  > footer h4 {
+body > footer h4 {
   color: #b94a25;
 }
-body  > footer a {
+body > footer a {
   color: #f89406;
 }
-body  > footer li {
+body > footer li {
   margin-bottom: 10px;
   display: inline;
 }
@@ -60,7 +60,7 @@ body  > footer li {
   background-image: linear-gradient(to right, #b94a25, #c67605);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffb94a25', endColorstr='#ffc67605', GradientType=1);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#020031', endColorstr='#6d3353', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#020031', endColorstr='#6d3353', GradientType=1);
   -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2);
@@ -119,12 +119,12 @@ article header h1 a {
 article header p {
   margin-top: -10px;
 }
-article  > h1 {
+article > h1 {
   font-size: 30px;
   line-height: 35px;
   margin-top: 35px;
 }
-article  > h2 {
+article > h2 {
   font-size: 20px;
   line-height: 25px;
   margin-top: 15px;
@@ -150,9 +150,9 @@ p .small {
 .well {
   padding: 14px;
 }
-.well  > .thumbnails {
+.well > .thumbnails {
   margin-left: -13px;
 }
-.well  > .thumbnails  > li {
+.well > .thumbnails > li {
   margin-left: 13px;
 }
