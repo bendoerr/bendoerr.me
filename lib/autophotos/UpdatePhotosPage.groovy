@@ -52,7 +52,7 @@ class UpdatePhotosPage extends DropboxJob {
         }.join('\n')
         toastHtml += """\
             <script type="text/javascript">
-                var photos = [${(1..i).collect { "'photos$i'" }.join(", ")}]
+                var photos = [${(1..i).collect { "'photos$it'" }.join(", ")}]
             </script>
         """
 
