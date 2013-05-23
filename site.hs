@@ -63,6 +63,11 @@ main = hakyll $ do
     copyTo "vendor/lightbox2/js/jquery-1.7.2.min.js" jsPath
     copyTo "vendor/lightbox2/css/lightbox.css" cssPath
 
+    -- Trying out this jGlance for photos
+    copyTo "vendor/jglance/jglance.js" jsPath
+    copyTo "vendor/jglance/jglance.css" cssPath
+    copyTo "vendor/jglance/images/arrows.png" imgPath
+
     -- Build blog posts
     blogPosts
 

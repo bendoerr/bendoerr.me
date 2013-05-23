@@ -7,3 +7,6 @@
 [submodule "vendor/lightbox2"]
 	path = vendor/lightbox2
 	url = git@github.com:bendoerr/lightbox2.git
+[submodule "vendor/jglance"]
+	path = vendor/jglance
+	url = git://github.com/moeishaa/jglance.git

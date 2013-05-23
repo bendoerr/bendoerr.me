@@ -23,31 +23,38 @@ class UpdatePhotosPage extends DropboxJob {
 
         def albumDetails = buildRecentAlbumDetails(dropboxApi, recentAlbums)
         def html = photosPageFile.getText('UTF-8')
+
+        int i = 0
         def toastHtml = albumDetails.collect {details->
+            i++
             """\
             <div class="row">
                 <div class="span12">
-                <h3>${details.name}</h3>
+                    <h3>${details.name}</h3>
                     <div class="well">
-                        <ul class="thumbnails">
-                        ${
-                            details.photos.collect {photo->
-                            """
-                            <li class="span2">
-                                <div class="thumbnail">
-                                    <a href="${photo.originalUrl}" rel="lightbox[${details.name}]">
-                                        <div class="crop" style="background-image: url('thumbs${photo.thumbUrl}')"></div>
-                                    </a>
-                                </div>
-                            </li>"""
-                            }.join('\n')
-                        }
-                        </ul>
+                        <div id="photos$i">
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                var photos$i = [
+                    ${
+                        details.photos.collect {
+                            "{'width': $it.width, 'height': $it.height, 'thumbnail': '${it.thumbUrl}', 'large': '${it.originalUrl}'}"
+                        }.join(',\n')
+                    }
+                ];
+            </script>
             """
+
         }.join('\n')
+        toastHtml += """\
+            <script type="text/javascript">
+                var photos = [${(1..i).collect { "'photos$i'" }.join(", ")}]
+            </script>
+        """
 
         def toast = '<!-- TOAST -->'
         def lines = html.tokenize('\n')
@@ -65,11 +72,14 @@ class UpdatePhotosPage extends DropboxJob {
         recentAlbums.collect {albumEntry->
             def photosDetails = albumEntry.contents.collect {photoEntry->
                 def originalUrl = sharePhoto(dropboxApi, photoEntry)
-                fetchThumbnail(dropboxApi, photoEntry)
+                def thumbSize = fetchThumbnail(dropboxApi, photoEntry)
                 [
                     originalUrl: originalUrl,
                     thumbUrl: "thumbs${photoEntry.path}",
-                    altText: photoEntry.path
+                    altText: photoEntry.path,
+                    width: thumbSize.width,
+                    height: thumbSize.height,
+
                 ]
             }
 
@@ -92,7 +102,7 @@ class UpdatePhotosPage extends DropboxJob {
                 ).url.replace('www', 'dl')
     }
 
-    private void fetchThumbnail(def dropboxApi, Entry pEntry) {
+    private Map fetchThumbnail(def dropboxApi, Entry pEntry) {
         def thumbFile = new File(thumbsDir, pEntry.path)
         if (!thumbFile.exists()) {
             log.debug('Downloading thumbnail of {}.', pEntry.path)
@@ -107,6 +117,8 @@ class UpdatePhotosPage extends DropboxJob {
                 out.close()
             }
         }
+        def img = javax.imageio.ImageIO.read(thumbFile)
+        [width: img.width, height: img.height]
     }
 
 
