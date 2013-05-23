@@ -14,6 +14,7 @@
     <link href="/css/site-responsive.css" rel="stylesheet">
     <link href="/css/syntax.css" rel="stylesheet">
     <link href="/css/lightbox.css" rel="stylesheet" />
+    <link href="/css/jglance.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -194,6 +195,7 @@ Watch as I fail, fail some more, and maybe succeed growing something.
     <script src="/js/jquery-1.7.2.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/lightbox.js"></script>
+    <script src="/js/jglance.js"></script>
 
     <!-- Google+ Async Share Script -->
     <script type="text/javascript">
@@ -250,5 +252,13 @@ Watch as I fail, fail some more, and maybe succeed growing something.
       })();
     </script>
 
+    <script type="text/javascript">
+        if (photos != null) {
+            photos.forEach(function(photoId) {
+                var jq = new JGlance({ container: $('#' + photoId) })
+                jq.push(eval(photoId))
+            });
+        }
+    </script>
   </body>
 </html>
